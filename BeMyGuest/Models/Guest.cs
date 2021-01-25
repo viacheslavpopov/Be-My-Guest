@@ -15,7 +15,7 @@ namespace BeMyGuest.Models
         public int GuestId { get; set; }
         public string Name { get; set; }
         public string Pronouns { get; set; }
-        [DataType(DataType.Email)]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         // public string Phone { get; set; } // Stretch for instant contact tracing
 
@@ -56,6 +56,6 @@ namespace BeMyGuest.Models
         public virtual ApplicationUser User { get; set; }
         public virtual ICollection<Gathering> JoinEntries { get; set; }
         public int CovidDataId { get; set; }
-        public CovidData CovidData { get; set; }
+        public virtual CovidData CovidData { get; set; }
     }
 }

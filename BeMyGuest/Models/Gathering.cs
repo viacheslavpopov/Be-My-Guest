@@ -8,9 +8,9 @@ namespace BeMyGuest.Models
         public int? GuestId { get; set; }
         public int? HostId { get; set; }
         public int? EventId { get; set; }
-        public Guest Guest { get; set; }
-        public Host Host { get; set; }
-        public Event Event { get; set; }
+        public virtual Guest Guest { get; set; }
+        public virtual Host Host { get; set; }
+        public virtual Event Event { get; set; }
 
     }
 }
