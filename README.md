@@ -43,7 +43,7 @@
 
 ## **Schema**
 
-[![Be-My-Guest-Schema.png](https://i.postimg.cc/44mFqSYp/Be-My-Guest-Schema.png)
+[![Be-My-Guest-Schema.png](https://i.postimg.cc/8C0NgnV9/Be-My-Guest-Schema.png)]
 
 ## Setup/Installation Requirements
 
