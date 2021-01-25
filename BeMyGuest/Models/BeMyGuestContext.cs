@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BeMyGuest.Models
 {
-    public class BeMyGuestContext : IdentityDbContext<Host, Guest>
+    public class BeMyGuestContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Host> Hosts { get; set; }
         public DbSet<Guest> Guests { get; set; }

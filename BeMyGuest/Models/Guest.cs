@@ -8,14 +8,14 @@ namespace BeMyGuest.Models
     {
         public Guest()
         {
-            this.Hosts = new HashSet<Gathering>();
-            this.Events = new HashSet<Gathering>();
+            this.JoinEntries = new HashSet<Gathering>();
         }
 
         // Guest Info
         public int GuestId { get; set; }
         public string Name { get; set; }
         public string Pronouns { get; set; }
+        [DataType(DataType.Email)]
         public string Email { get; set; }
         // public string Phone { get; set; } // Stretch for instant contact tracing
 
@@ -46,12 +46,16 @@ namespace BeMyGuest.Models
         public bool NotAHugger { get; set; } = false;
 
         // Group Connections
+        [Display(Name = "Plus One(s) in Tow")]
         public bool PlusOne { get; set; } = false;
+        [Display(Name = "Small Children in Tow")]
         public bool SmallChildren { get; set; } = false;
         //public virtual ICollection <Pod> PodMates { get; set; } // stretch
 
-        //Lists
-        public virtual ICollection<Gathering> Guests { get; set; }
-        //covid ID
+        //Outside Table Data
+        public virtual ApplicationUser User { get; set; }
+        public virtual ICollection<Gathering> JoinEntries { get; set; }
+        public int CovidDataId { get; set; }
+        public CovidData CovidData { get; set; }
     }
 }
