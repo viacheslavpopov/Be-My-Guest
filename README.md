@@ -43,7 +43,7 @@
 
 ## **Schema**
 
-[![Be-My-Guest-Schema.png](https://i.postimg.cc/44mFqSYp/Be-My-Guest-Schema.png)]
+[![Be-My-Guest-Schema.png](https://i.postimg.cc/44mFqSYp/Be-My-Guest-Schema.png)
 
 ## Setup/Installation Requirements
 
@@ -165,6 +165,10 @@ HTML<br>
 Bootstrap<br>
 JQuery<br>
 JavaScript
+
+## Stretch Goals
+
+- Implementing OAuth for user login.
 
 ## Installation Requirements
 
