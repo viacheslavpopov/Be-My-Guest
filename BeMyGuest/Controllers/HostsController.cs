@@ -53,7 +53,7 @@ namespace BeMyGuest.Controllers
             return View(thisHost);
         }
         [Authorize]
-        puclic async Task<ActionResult> Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value();
             var currentUser = await _userManager.FindByIdAsync(userId);
