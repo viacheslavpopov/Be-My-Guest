@@ -22,6 +22,14 @@ namespace CovidApi.Controllers
             var query = _db.Diagnoses.AsQueryable();
             return query.ToList();
         }
+        //GET api/diagnoses/{1}
+        [HttpGet("{id}")]
+        public ActionResult<Diagnosis> GetById(int id)
+        {
+            return _db.Diagnoses
+                .Include(diagnosis => diagnosis.Evidences)
+                .FirstOrDefault(entry => entry.DiagnosisId == id);
+        }
         //POST api/diagnoses
         [HttpPost]
         public void Post([FromBody] Diagnosis diagnosis)

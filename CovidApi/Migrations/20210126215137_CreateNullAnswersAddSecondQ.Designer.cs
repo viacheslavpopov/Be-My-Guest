@@ -3,14 +3,16 @@ using System;
 using CovidApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CovidApi.Migrations
 {
     [DbContext(typeof(CovidApiContext))]
-    partial class CovidApiContextModelSnapshot : ModelSnapshot
+    [Migration("20210126215137_CreateNullAnswersAddSecondQ")]
+    partial class CreateNullAnswersAddSecondQ
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,21 +48,15 @@ namespace CovidApi.Migrations
 
                     b.Property<int?>("AgeAnswer");
 
-                    b.Property<bool?>("Cough");
-
                     b.Property<int?>("DiagnosisId");
 
                     b.Property<string>("Explanation");
 
-                    b.Property<bool?>("Fever");
+                    b.Property<bool?>("MultipleAnswer");
 
                     b.Property<string>("Question");
 
                     b.Property<string>("SexAnswer");
-
-                    b.Property<bool?>("Sob");
-
-                    b.Property<bool?>("YesNo");
 
                     b.HasKey("EvidenceId");
 
@@ -73,49 +69,15 @@ namespace CovidApi.Migrations
                         {
                             EvidenceId = 1,
                             DiagnosisId = 1,
-                            Question = "What is your sex?"
+                            Question = "What is your sex?",
+                            SexAnswer = "Female"
                         },
                         new
                         {
                             EvidenceId = 2,
+                            AgeAnswer = 20,
                             DiagnosisId = 1,
                             Question = "What is your age?"
-                        },
-                        new
-                        {
-                            EvidenceId = 3,
-                            DiagnosisId = 1,
-                            Question = "Do you have an underlying conditions that put you at a high risk? List all that apply."
-                        },
-                        new
-                        {
-                            EvidenceId = 4,
-                            DiagnosisId = 1,
-                            Question = "Do you have any of the following symptoms?"
-                        },
-                        new
-                        {
-                            EvidenceId = 5,
-                            DiagnosisId = 1,
-                            Question = "Do you have any other symptoms? List all that apply"
-                        },
-                        new
-                        {
-                            EvidenceId = 6,
-                            DiagnosisId = 1,
-                            Question = "Have you recently lost the ability to smell or taste?"
-                        },
-                        new
-                        {
-                            EvidenceId = 7,
-                            DiagnosisId = 1,
-                            Question = "Please explain your current exposure level."
-                        },
-                        new
-                        {
-                            EvidenceId = 8,
-                            DiagnosisId = 1,
-                            Question = "Have you recently traveled?"
                         });
                 });
 
