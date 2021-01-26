@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+/* font-family: 'Prata', serif;
+font-family: 'Montserrat', sans-serif; */
+
+.container {
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    /* background-color: #bfac95; */
+    color: #3B3C40;
+}
+
+h1 {
+    color: #3B3C40;
+    text-align: center;
+    letter-spacing: 10px;
+    /* font-style: italic; */
+    font-family: 'Prata', serif;
+    font-size: 80pt;
+}
+
+h2 {
+    font-family: 'Montserrat', sans-serif;
+    color: #3B3C40;
+}
+
+h3 {
+    color: #3B3C40;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    height: auto;
+    filter: drop-shadow(0px 10px 3px #BFBEBA);
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.center {
+    text-align: center;
+}
+
+.navbar-custom {
+    background-color: #34594F;
+}
+
+/* changes the brand and text color */
+.navbar-custom .navbar-brand, .navbar-custom .navbar-text {
+    color: #F2D0CC;
+}
+
+/* changes the link color */
+.navbar-custom .navbar-nav .nav-link {
+    color: #F2D0CC;
+}
+
+/* changes the color of active or hovered links */
+.navbar-custom .nav-item.active .nav-link, .navbar-custom .nav-item:hover .nav-link {
+    color: #9AD9CD;
+    letter-spacing: 2px;
+}
