@@ -16,6 +16,12 @@ font-family: 'Montserrat', sans-serif; */
 body {
     /* background-color: #bfac95; */
     color: #3B3C40;
+    background-repeat: no-repeat;
+    background: linear-gradient(#BFBEBA, #FEF0E0);
+    /* background-size: cover; */
+    /* background-image: url("../img/BeMyGuest_Logo.png"); */
+    background-position: center;
+    background-attachment: fixed;
 }
 
 h1 {
@@ -25,6 +31,7 @@ h1 {
     /* font-style: italic; */
     font-family: 'Prata', serif;
     font-size: 80pt;
+    text-shadow: 5px 5px 10px #BFBEBA;
 }
 
 h2 {
