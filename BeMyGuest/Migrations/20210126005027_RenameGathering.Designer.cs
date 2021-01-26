@@ -3,14 +3,16 @@ using System;
 using BeMyGuest.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BeMyGuest.Migrations
 {
     [DbContext(typeof(BeMyGuestContext))]
-    partial class BeMyGuestContextModelSnapshot : ModelSnapshot
+    [Migration("20210126005027_RenameGathering")]
+    partial class RenameGathering
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
