@@ -8,8 +8,8 @@ namespace BeMyGuest.Models
         public DbSet<Host> Hosts { get; set; }
         public DbSet<Guest> Guests { get; set; }
         public DbSet<Event> Events { get; set; }
-        public DbSet<Gathering> Gatherings { get; set; }
         public DbSet<CovidData> CovidDataSet { get; set; }
+        public DbSet<Gathering> Gathering { get; set; }
         public BeMyGuestContext(DbContextOptions options) : base (options) { }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
