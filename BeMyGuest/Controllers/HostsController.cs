@@ -11,7 +11,7 @@ using BeMyGuest.Models;
 
 namespace BeMyGuest.Controllers
 {
-    public class HostsController : Controllers
+    public class HostsController : Controller
     {
         private readonly BeMyGuestContext _db;
         private readonly UserManager<ApplicationUser> _userManager;
@@ -19,7 +19,7 @@ namespace BeMyGuest.Controllers
         public HostsController(UserManager<ApplicationUser> userManager, BeMyGuestContext db)
         {
             _userManager = userManager;
-            _db = db
+            _db = db;
         }
         public ActionResult Index()
         {
@@ -55,7 +55,7 @@ namespace BeMyGuest.Controllers
         [Authorize]
         public async Task<ActionResult> Edit(int id)
         {
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value();
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var currentUser = await _userManager.FindByIdAsync(userId);
             var thisHost = _db.Hosts
                 .Where(entry => entry.User.Id == currentUser.Id)
@@ -96,7 +96,7 @@ namespace BeMyGuest.Controllers
                 var returnedJoined = _db.Gathering.Any(join => join.HostId == host.HostId && join.GuestId == GuestId);
                 if (!returnedJoined)
                 {
-                    _db.Gathering.Add(new Gathering() { GuestId = GuestId, HostId == host.HostId });
+                    _db.Gathering.Add(new Gathering() { GuestId = GuestId, HostId = host.HostId });
                 }
             }
             _db.SaveChanges();
@@ -122,10 +122,10 @@ namespace BeMyGuest.Controllers
         {
             if (EventId != 0)
             {
-                var returnedJoined = _db.Gathering.Any(join => join.HostId == host.HostId && join.EventId == EventsId);
+                var returnedJoined = _db.Gathering.Any(join => join.HostId == host.HostId && join.EventId == EventId);
                 if (!returnedJoined)
                 {
-                    _db.Gathering.Add(new Gathering() { GuestId = GuestId, HostId == host.HostId });
+                    _db.Gathering.Add(new Gathering() { EventId = EventId, HostId = host.HostId });
                 }
             }
             _db.SaveChanges();
@@ -156,7 +156,7 @@ namespace BeMyGuest.Controllers
         [HttpPost]
         public ActionResult DeleteGuest(int joinId)
         {
-            var joinEntry = _db.Gathering.FirstOrDefault(entry => entry.GatheringId = joinId);
+            var joinEntry = _db.Gathering.FirstOrDefault(entry => entry.GatheringId == joinId);
             _db.Gathering.Remove(joinEntry);
             _db.SaveChanges();
             return RedirectToAction("Index");

@@ -32,20 +32,26 @@ namespace BeMyGuest.Controllers
         [HttpPost]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            // if(ModelState.IsValid)
-            // {
+            if(ModelState.IsValid)
+            {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 IdentityResult result = await _userManager.CreateAsync(user, model.Password);
                 if(result.Succeeded)
                 {
                     return RedirectToAction("Index");
                 }
+            }
+            else
+            {
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                IdentityResult result = await _userManager.CreateAsync(user, model.Password);
                 foreach(var error in result.Errors)
                 {
                     ModelState.AddModelError("", error.Description);
                 }
                 return View();
-            // }
+            }
+            return View();
         }
 
         public ActionResult Login()
@@ -56,10 +62,10 @@ namespace BeMyGuest.Controllers
         [HttpPost]
         public async Task<ActionResult> Login(LoginViewModel model)
         {
-            SignInResult result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: true, lockoutOnFailure: false);
+            Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: true, lockoutOnFailure: false);
             if(result.Succeeded)
             {
-                return RedirectToAction()
+                return RedirectToAction("Index", "Home");
             }
             else
             {
