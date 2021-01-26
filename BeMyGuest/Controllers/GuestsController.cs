@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace BeMyGuestMVC.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class GuestsController: Controller
     {
         private readonly BeMyGuestContext _db;

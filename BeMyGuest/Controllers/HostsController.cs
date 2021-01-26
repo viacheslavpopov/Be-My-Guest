@@ -11,6 +11,7 @@ using BeMyGuest.Models;
 
 namespace BeMyGuest.Controllers
 {
+    [Authorize(Roles = "Admin, Host")]
     public class HostsController : Controller
     {
         private readonly BeMyGuestContext _db;
@@ -21,6 +22,7 @@ namespace BeMyGuest.Controllers
             _userManager = userManager;
             _db = db;
         }
+
         public ActionResult Index()
         {
             Dictionary<object, object> model = new Dictionary<object, object>();
@@ -30,11 +32,13 @@ namespace BeMyGuest.Controllers
             model.Add("events", events);
             return View(model);
         }
-        [Authorize]
+
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
         }
+
         [HttpPost]
         public async Task<ActionResult> Create(Host host)
         {
@@ -45,6 +49,7 @@ namespace BeMyGuest.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
+
         public ActionResult Details(int id)
         {
             var thisHost = _db.Hosts.FirstOrDefault(host => host.HostId == id);
@@ -52,7 +57,7 @@ namespace BeMyGuest.Controllers
             ViewBag.IsCurrentUser = userId != null ? userId == thisHost.User.Id : false;
             return View(thisHost);
         }
-        [Authorize]
+
         public async Task<ActionResult> Edit(int id)
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -66,6 +71,7 @@ namespace BeMyGuest.Controllers
             }
             return View(thisHost);
         }
+
         [HttpPost]
         public ActionResult Edit(Host host)
         {
@@ -73,7 +79,7 @@ namespace BeMyGuest.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
-        [Authorize]
+
         public async Task<ActionResult> AddGuest(int id)
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -88,6 +94,7 @@ namespace BeMyGuest.Controllers
             ViewBag.GuestId = new SelectList(_db.Guests);
             return View(thisHost);
         }
+
         [HttpPost]
         public ActionResult AddGuest(Host host, int GuestId)
         {
@@ -102,7 +109,7 @@ namespace BeMyGuest.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
-        [Authorize]
+
         public async Task<ActionResult> AddEvent(int id)
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -117,6 +124,7 @@ namespace BeMyGuest.Controllers
             ViewBag.EventId = new SelectList(_db.Events);
             return View(thisHost);
         }
+
         [HttpPost]
         public ActionResult AddEvent(Host host, int EventId)
         {
@@ -131,7 +139,8 @@ namespace BeMyGuest.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
-        [Authorize]
+
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Delete(int id)
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -145,6 +154,7 @@ namespace BeMyGuest.Controllers
             }
             return View(thisHost);
         }
+
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
@@ -153,6 +163,7 @@ namespace BeMyGuest.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
+
         [HttpPost]
         public ActionResult DeleteGuest(int joinId)
         {
