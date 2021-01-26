@@ -1,0 +1,22 @@
+@{
+    Layout = "_Layout";
+}
+
+@using BeMyGuest.Models;
+
+<h2>Your Host(s)</h2>
+<hr>
+@if (Model.Any())
+{
+    <ul>
+        @foreach(Host host in Model)
+        {
+            <li>@Html.ActionLink($"{host.HostName}", "Details", new { id = host.HostId })</li>
+        }
+    </ul>
+}
+else
+{
+    <h3>You do not have any hosts yet.</h3>
+}
+@Html.ActionLink("Back to Home", "Index", "Home")</h3>

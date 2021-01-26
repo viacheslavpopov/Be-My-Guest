@@ -1,0 +1,22 @@
+@{
+    Layout = "_Layout";
+}
+
+@using BeMyGuest.Models;
+
+<h2>Guest List</h2>
+<hr>
+@if (Model.Any())
+{
+    <ul>
+        @foreach(Guest guest in Model)
+        {
+            <li>@Html.ActionLink($"{guest.Name}", "Details", new { id = guest.GuestId })</li>
+        }
+    </ul>
+}
+else
+{
+    <h3>There are no guests added yet.</h3>
+}
+<h3>@Html.ActionLink("Add a New Guest", "Create") || @Html.ActionLink("Back to Home", "Index", "Home")</h3>
