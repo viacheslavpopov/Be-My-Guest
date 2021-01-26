@@ -11,6 +11,7 @@ namespace BeMyGuest.Models
             this.JoinEntries = new HashSet<Gathering>();
         }
         public int EventId { get; set; }
+        public string EventTitle { get; set; }
         [Display(Name="Date")]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM-dd-yyyy")]
