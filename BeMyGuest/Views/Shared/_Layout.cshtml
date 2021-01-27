@@ -33,20 +33,33 @@
                     </li>
                 </ul>
                 @*break from left-aligned & right-aligned nav bar items*@
-                <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/account/register"><span class="fas fa-user"></span> Sign Up</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/account/login"><span class="fas fa-sign-in-alt"></span> Login</a>
-                    </li>
-                    <li class="nav-item">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
                         <a class="nav-link" href="/account"><span class="fas fa-user"></span> Your Account</a>
-                    </li>
-                </ul>
+                        </li>
+                        <li class="nav-item">
+                        <button class="nav-link" href="/logoff/account"><span class="fas fa-user"></span> Logout</button>
+                        </li>
+                    </ul>
+                }
+                else
+                {
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/account/register"><span class="fas fa-user"></span> Sign Up</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/account/login"><span class="fas fa-sign-in-alt"></span> Login</a>
+                        </li>
+                    </ul>
+                }
             </div>
         </nav>
-        @RenderBody()
-        @RenderSection("scripts", required: false)
+        <div class="container"></div>
+            @RenderBody()
+            @RenderSection("scripts", required: false)
+        </div>
     </body>
 </html>
