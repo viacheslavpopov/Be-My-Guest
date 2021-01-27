@@ -1,0 +1,15 @@
+@{
+    Layout = "_Layout";
+}
+
+@model BeMyGuest.Models.Event
+
+<h1>Delete Event</h1>
+<h3>Are you sure you want to delete this event?</h3>
+<hr />
+
+<h3>Flavor Description: @Html.DisplayFor(model => model.EventTitle)</h3>
+@using (Html.BeginForm())
+{
+    <input type="submit" value="Delete" class="btn btn-default" />
+}

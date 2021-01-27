@@ -39,7 +39,7 @@ namespace BeMyGuest.Controllers
                 return View();
             }
             else
-            {   
+            {
                 try
                 {
                     var user = new ApplicationUser { UserName = model.Email, Email = model.Email };

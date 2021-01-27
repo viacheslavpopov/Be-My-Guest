@@ -1,0 +1,23 @@
+@{
+    Layout = "_Layout";
+}
+
+@model BeMyGuest.Models.Guest
+
+<h2>Edit</h2>
+<hr />
+<h4>Edit this Guest: @Html.DisplayFor(model => model.Name)</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.GuestId)
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name)
+        @Html.TextBoxFor(model => model.Name)
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-default">
+    </div>
+}
+
+<h3>@Html.ActionLink("Show all guests", "Index", "Guests")</h3>
