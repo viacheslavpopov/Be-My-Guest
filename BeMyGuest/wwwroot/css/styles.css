@@ -79,9 +79,9 @@ img {
     padding-bottom: 10px;
 }
 
-.center {
+/* #center {
     text-align: center;
-}
+} */
 
 .navbar-custom {
     background-color: #34594F;
@@ -101,4 +101,11 @@ img {
 .navbar-custom .nav-item.active .nav-link, .navbar-custom .nav-item:hover .nav-link {
     color: #9AD9CD;
     letter-spacing: 2px;
+}
+
+/*Cards*/
+.card {
+    margin: 0 auto;
+    float: none;
+    margin-bottom: 10px;
 }
