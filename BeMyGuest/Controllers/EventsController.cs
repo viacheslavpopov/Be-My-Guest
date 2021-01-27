@@ -37,43 +37,56 @@ namespace BeMyGuest.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create(Event event)
+        public async Task<ActionResult> Create(Event myEvent)
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var currentUser = await _userManager.FindByIdAsync(userId);
-            event.User = currentUser;
-            _db.Events.Add(event);
+            myEvent.User = currentUser;
+            _db.Events.Add(myEvent);
             _db.SaveChanges();
-            return RedirectToActionResult("Details", new { id = Event.EventId});
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
         public ActionResult Details(int id)
         {
-            var thisEvent = _db.Events.FirstOrDefault(event => event.EventId == id);
-            var userId = thisEvent.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var thisEvent = _db.Events.FirstOrDefault(myEvent => myEvent.EventId == id);
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             ViewBag.IsCurrentUser = userId != null? userId == thisEvent.User.Id : false;
-            return ViewComponent(thisEvent);
+            return View(thisEvent);
         }
 
         public async Task<ActionResult> Edit(int id)
         {
-            var userId this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var currentUser = await _userManager.FindByIdAsync(userId);
-            var thisEvent = _db.Events.Where(entry => entry.User.Id == currentUser.Id).FirstOrDefault(event => event.EventId == id);
+            var thisEvent = _db.Events.Where(entry => entry.User.Id == currentUser.Id).FirstOrDefault(myEvent => myEvent.EventId == id);
             if(thisEvent == null)
             {
-                return RedirectToAction("Details", new { id = id })
+                return RedirectToAction("Details", new { id = id });
             }
             return View(thisEvent);
         }
 
         [HttpPost]
-        public ActionResult Edit(Event event)
+        public ActionResult Edit(Event myEvent)
         {
-            _db.Entry(event).State = EntityState.Modified;
+            _db.Entry(myEvent).State = EntityState.Modified;
             _db.SaveChanges();
-            return RedirectToActionResult("Details", new { id = event.EventId});
+            return RedirectToAction("Details", new { id = myEvent.EventId});
         }
+
+        // public async Task<ActionResult> AddGuest
+         
+    //   for ( var i =0; i<number; i++)
+    //   {
+    //     if (bookId != 0)
+    //     {
+    //       _db.Copies.Add(copy);
+    //       _db.SaveChanges();
+    //       copy.CopyId ++;
+    //     }
+    //   }
+    //   return RedirectToAction("Index", "
     }
 }

@@ -37,7 +37,7 @@ namespace BeMyGuestMVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Guest guest, int GuestId)
+        public ActionResult Create(Guest guest)
         {
             _db.Guests.Add(guest);
             _db.SaveChanges();

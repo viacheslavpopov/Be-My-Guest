@@ -24,3 +24,8 @@
         </div>
     </div>
 }
+<div class="card-footer">
+    <a asp-controller="Administration" asp-action="EditUsersInRole" asp-route-roleId="@Model.Id" class="btn btn-primary">
+        Add or remove users from this role
+    </a>
+</div>

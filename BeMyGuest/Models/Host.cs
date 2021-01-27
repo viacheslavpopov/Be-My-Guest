@@ -15,6 +15,6 @@ namespace BeMyGuest.Models
         [Display(Name = "Host Email")]
         public string HostEmail { get; set; }
         public virtual ApplicationUser User { get; set; }
-        public virtual ICollection<Gathering> JoinEntries  { get; set; }
+        public virtual ICollection<Gathering> JoinEntries { get; set; }
     }
 }
