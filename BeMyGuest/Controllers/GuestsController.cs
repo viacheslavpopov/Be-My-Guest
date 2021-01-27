@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace BeMyGuestMVC.Controllers
 {
     [Authorize(Roles = "Admin")]
-    public class GuestsController: Controller
+    public class GuestsController : Controller
     {
         private readonly BeMyGuestContext _db;
         private readonly UserManager<ApplicationUser> _userManager;
@@ -58,7 +58,7 @@ namespace BeMyGuestMVC.Controllers
             var thisGuest = _db.Guests.FirstOrDefault(guests => guests.GuestId == id);
             if (thisGuest == null)
             {
-                return RedirectToAction("Details", new { id = id});
+                return RedirectToAction("Details", new { id = id });
             }
             return View(thisGuest);
         }
@@ -80,7 +80,7 @@ namespace BeMyGuestMVC.Controllers
                 .FirstOrDefault(guest => guest.GuestId == id);
             if (thisGuest == null)
             {
-                return RedirectToAction("Details", new {id = id});
+                return RedirectToAction("Details", new { id = id });
             }
             return View(thisGuest);
         }
@@ -105,24 +105,24 @@ namespace BeMyGuestMVC.Controllers
             // }
             // else
             // {
-                var thisGuest = _db.Guests
-                    // .Include(guest => guest.Hosts)
-                    // .ThenInclude(join => join.Host)
-                    // .Include(guest => guest.CovidData)
-                    .FirstOrDefault(guests => guests.GuestId == id);
-                _db.Guests.Remove(thisGuest);
-                _db.SaveChanges();
+            var thisGuest = _db.Guests
+                // .Include(guest => guest.Hosts)
+                // .ThenInclude(join => join.Host)
+                // .Include(guest => guest.CovidData)
+                .FirstOrDefault(guests => guests.GuestId == id);
+            _db.Guests.Remove(thisGuest);
+            _db.SaveChanges();
             // }
             return RedirectToAction("Index");
         }
 
-        // [HttpPost]
-        // public ActionResult DeleteHost(int joinId, int GuestId)
-        // {
-        //     var joinEntry = _db.Gathering.FirstOrDefault(entry => entry.GatheringId == joinId);
-        //     _db.Gathering.Remove(joinEntry);
-        //     _db.SaveChanges();
-        //     return RedirectToAction("Details", new { id = guests.GuestId});
-        // }
+        [HttpPost]
+        public ActionResult DeleteHost(int joinId, int GuestId)
+        {
+            var joinEntry = _db.Gathering.FirstOrDefault(entry => entry.GatheringId == joinId);
+            _db.Gathering.Remove(joinEntry);
+            _db.SaveChanges();
+            return RedirectToAction("Details", new { id = GuestId });
+        }
     }
 }

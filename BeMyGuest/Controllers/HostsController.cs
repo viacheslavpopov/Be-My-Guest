@@ -148,7 +148,7 @@ namespace BeMyGuest.Controllers
             Host thisHost = _db.Hosts
                 .Where(entry => entry.User.Id == currentUser.Id)
                 .FirstOrDefault(host => host.HostId == id);
-            if(thisHost == null)
+            if (thisHost == null)
             {
                 return RedirectToAction("Details", new { id = id });
             }
@@ -158,7 +158,7 @@ namespace BeMyGuest.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            var thisHost = _db.Hosts.FirstOrDefault( host => host.HostId == id);
+            var thisHost = _db.Hosts.FirstOrDefault(host => host.HostId == id);
             _db.Hosts.Remove(thisHost);
             _db.SaveChanges();
             return RedirectToAction("Index");

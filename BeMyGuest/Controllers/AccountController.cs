@@ -33,7 +33,7 @@ namespace BeMyGuest.Controllers
         [HttpPost]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            if(model.Password != model.ConfirmPassword)
+            if (model.Password != model.ConfirmPassword)
             {
                 ViewBag.Error = "Confirm that your passwords match";
                 return View();
@@ -44,7 +44,7 @@ namespace BeMyGuest.Controllers
                 {
                     var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                     IdentityResult result = await _userManager.CreateAsync(user, model.Password);
-                    if(result.Succeeded)
+                    if (result.Succeeded)
                     {
                         return RedirectToAction("Index");
                     }
@@ -54,7 +54,7 @@ namespace BeMyGuest.Controllers
                         return View();
                     }
                 }
-                catch(Exception result)
+                catch (Exception result)
                 {
                     ViewBag.Error = result.Message;
                     return View();
@@ -71,7 +71,7 @@ namespace BeMyGuest.Controllers
         public async Task<ActionResult> Login(LoginViewModel model)
         {
             Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: true, lockoutOnFailure: false);
-            if(result.Succeeded)
+            if (result.Succeeded)
             {
                 return RedirectToAction("Index");
             }
