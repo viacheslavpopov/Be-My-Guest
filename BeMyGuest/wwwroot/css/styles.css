@@ -1,16 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
+/*Calling the imported google fonts above*/
 /* font-family: 'Prata', serif;
 font-family: 'Montserrat', sans-serif; */
+/*-------------------*/
+
+/*Splash Page Header*/
+#beMyGuest {
+    color: #3B3C40;
+    text-align: center;
+    letter-spacing: 10px;
+    /* font-style: italic; */
+    font-family: 'Prata', serif;
+    text-shadow: 5px 5px 10px #BFBEBA;
+    font-size: 80pt;
+}
+
+#strikethrough {
+    text-decoration: line-through;
+}
+
+#byline {
+    font-style: italic;
+    text-shadow: 5px 5px 10px #BFBEBA;
+}
+
+/*Regular pages styling*/
+* {
+    font-family: 'Montserrat', sans-serif;
+}
 
 .container {
     margin: 0 auto;
     max-width: 1200px;
-}
-
-* {
-    font-family: 'Montserrat', sans-serif;
 }
 
 body {
@@ -30,7 +53,6 @@ h1 {
     letter-spacing: 10px;
     /* font-style: italic; */
     font-family: 'Prata', serif;
-    font-size: 80pt;
     text-shadow: 5px 5px 10px #BFBEBA;
 }
 
@@ -44,6 +66,7 @@ h3 {
     font-family: 'Montserrat', sans-serif;
     text-align: center;
 }
+
 
 img {
     display: block;
