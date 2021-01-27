@@ -27,7 +27,7 @@ namespace BeMyGuest.Models
 
         public static List<CovidData> GetCovidData()
         {
-            var apiCallTask = ApiHelper.GetAll();
+            var apiCallTask = EvidencesApiHelper.GetAll();
             var result = apiCallTask.Result;
 
             JArray jsonResponse = JsonConvert.DeserializeObject<JArray>(result);
@@ -37,27 +37,28 @@ namespace BeMyGuest.Models
         }
         public static CovidData GetDetails(int id)
         {
-            var apiCallTask = ApiHelper.Get(id);
+            var apiCallTask = EvidencesApiHelper.Get(id);
             var result = apiCallTask.Result;
-
+            Console.WriteLine("RESULT IN CONTROLLER: {0}", result);
             JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
+            Console.WriteLine("RESULT IN CONTROLLER: {0}", jsonResponse.ToString());
             CovidData CovidData = JsonConvert.DeserializeObject<CovidData>(jsonResponse.ToString());
 
             return CovidData;
         }
-        public static void Post(CovidData CovidData)
+        public static void Post(CovidData covidData)
         {
-            string jsonCovidData = JsonConvert.SerializeObject(CovidData);
-            var apiCallTask = ApiHelper.Post(jsonCovidData);
+            string jsonCovidData = JsonConvert.SerializeObject(covidData);
+            var apiCallTask = EvidencesApiHelper.Post(jsonCovidData);
         }
-        public static void Put(CovidData CovidData)
+        public static void Put(CovidData covidData)
         {
-            string jsonCovidData = JsonConvert.SerializeObject(CovidData);
-            var apiCallTask = ApiHelper.Put(CovidData.CovidDataId, jsonCovidData);
+            string jsonCovidData = JsonConvert.SerializeObject(covidData);
+            var apiCallTask = EvidencesApiHelper.Put(covidData.CovidDataId, jsonCovidData);
         }
         public static void Delete(int id)
         {
-            var apiCallTask = ApiHelper.Delete(id);
+            var apiCallTask = EvidencesApiHelper.Delete(id);
         }
     }
 }

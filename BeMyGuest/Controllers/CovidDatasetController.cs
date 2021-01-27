@@ -19,16 +19,36 @@ namespace BeMyGuest.Controllers
             var covidList = CovidData.GetCovidData();
             return View(covidList);
         }
-        // [HttpPost]
-        // public IActionResult Index(CovidData covid)
-        // {
-        //     CovidData.Post(covid);
-        //     return RedirectToAction("Index");
-        // }
+        [HttpPost]
+        public IActionResult Index(CovidData covid)
+        {
+            CovidData.Post(covid);
+            return RedirectToAction("Index");
+        }
         public IActionResult Details(int id)
         {
             var covidData = CovidData.GetDetails(id);
             return View(covidData);
         }
+        public IActionResult Edit(int id)
+        {
+            var covidData = CovidData.GetDetails(id);
+            return View(covidData);
+        }
+
+        [HttpPost]
+        public IActionResult Details(int id, CovidData covid)
+        {
+            covid.CovidDataId = id;
+            CovidData.Put(covid);
+            return RedirectToAction("Details", id);
+        }
+
+        public IActionResult Delete(int id)
+        {
+            CovidData.Delete(id);
+            return RedirectToAction("Index");
+        }
+
     }
 }
