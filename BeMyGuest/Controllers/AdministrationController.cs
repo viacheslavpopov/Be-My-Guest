@@ -47,7 +47,7 @@ namespace BeMyGuest.Controllers
                 IdentityResult result = await _roleManager.CreateAsync(identityRole);
                 if(result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Administration");
                 }
                 foreach(IdentityError error in result.Errors)
                 {
@@ -83,16 +83,47 @@ namespace BeMyGuest.Controllers
             return View(model);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> EditUsersInRole(string roleId)
+        [HttpPost]
+        public async Task<IActionResult> EditRole(EditRoleViewModel model)
         {
-            ViewBag.roleId = roleId;
-
-            var role = await _roleManager.FindByIdAsync(roleId);
+            var role = await _roleManager.FindByIdAsync(model.Id);
 
             if (role == null)
             {
-                ViewBag.ErrorMessage = $"Role with Id = {roleId} cannot be found";
+                ViewBag.ErrorMessage = $"Role with Id = {model.Id} cannot be found";
+                return View("NotFound");
+            }
+            else
+            {
+                role.Name = model.RoleName;
+
+                // Update the Role using UpdateAsync
+                var result = await _roleManager.UpdateAsync(role);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index");
+                }
+
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+
+                return View(model);
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditUsersInRole(string Id)
+        {
+            ViewBag.roleId = Id;
+
+            var role = await _roleManager.FindByIdAsync(Id);
+
+            if (role == null)
+            {
+                ViewBag.ErrorMessage = $"Role with Id = {Id} cannot be found";
                 return View("NotFound");
             }
 
@@ -119,23 +150,27 @@ namespace BeMyGuest.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditUsersInRole(List<UserRoleViewModel> model, string roleId)
+        public async Task<IActionResult> EditUsersInRole(List<UserRoleViewModel> model, string Id)
         {
-            var role = await _roleManager.FindByIdAsync(roleId);
+            var role = await _roleManager.FindByIdAsync(Id);
+
             if (role == null)
             {
-                ViewBag.ErrorMessage = $"Role with Id = {roleId} cannot be found";
+                ViewBag.ErrorMessage = $"Role with Id = {Id} cannot be found";
                 return View("NotFound");
             }
+
             for (int i = 0; i < model.Count; i++)
             {
                 var user = await _userManager.FindByIdAsync(model[i].UserId);
+
                 IdentityResult result = null;
+
                 if (model[i].IsSelected && !(await _userManager.IsInRoleAsync(user, role.Name)))
                 {
                     result = await _userManager.AddToRoleAsync(user, role.Name);
                 }
-                else if (!(model[i].IsSelected) && await _userManager.IsInRoleAsync(user, role.Name))
+                else if (!model[i].IsSelected && await _userManager.IsInRoleAsync(user, role.Name))
                 {
                     result = await _userManager.RemoveFromRoleAsync(user, role.Name);
                 }
@@ -147,17 +182,47 @@ namespace BeMyGuest.Controllers
                 if (result.Succeeded)
                 {
                     if (i < (model.Count - 1))
-                    {
                         continue;
-                    }
                     else
-                    {
-                        return RedirectToAction("EditRole", new { Id = roleId });
-                    }
-
+                        return RedirectToAction("EditRole", new { Id = Id });
                 }
             }
-            return RedirectToAction("EditRole", new { Id = roleId });
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteRole(string id)
+        {
+            var role = await _roleManager.FindByIdAsync(id);
+
+            if (role == null)
+            {
+                ViewBag.ErrorMessage = $"Role with Id = {id} cannot be found";
+                return View("NotFound");
+            }
+            else
+            {
+                var result = await _roleManager.DeleteAsync(role);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index");
+                }
+
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+
+                return View("Index");
+            }
         }
     }
 }
