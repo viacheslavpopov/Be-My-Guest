@@ -164,7 +164,9 @@ CSS<br>
 HTML<br>
 Bootstrap<br>
 JQuery<br>
-JavaScript
+JavaScript<br>
+[Google Fonts](fonts.google.com)<br>
+[Canva](canva.com)<br>
 
 ## Stretch Goals
 
