@@ -12,6 +12,5 @@ namespace CovidApi.Models
         public bool? YesNo { get; set; }
         public string Explanation { get; set; }
         public int? DiagnosisId { get; set; }
-        public Diagnosis Diagnosis { get; set; }
     }
 }
