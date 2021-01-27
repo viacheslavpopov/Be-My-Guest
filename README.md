@@ -37,9 +37,9 @@
   </tr>
 </table>
 
-## **Description**
-
 [![Be-My-Guest-Opt1-3.png](https://i.postimg.cc/ydMmPLrY/Be-My-Guest-Opt1-3.png)
+
+## **Description**
 
 ## **Preview**
 
@@ -113,7 +113,9 @@ Create a connection string to connect the database to the web application
     }
 }
 ```
+
 TODO
+
 - Put in your MySQL password in `pwd=YourPassword`. Change the server, port, and uid if necessary.
 
 ### Import Database Using Entity Framework Core
@@ -149,7 +151,6 @@ TODO
 
 </details>
 
-
 ## **Known Bugs**
 
 [Report bugs here.](https://github.com/cschweig2/BeMyGuest.Solution/issues) | [Request features here.](https://github.com/cschweig2/BeMyGuest.Solution/issues)
@@ -178,5 +179,6 @@ JavaScript<br>
 ## Installation Requirements
 
 ### License
+
 This software is licensed under the [MIT License](https://choosealicense.com/licenses/mit/).
 Copyright (c) 2021 _*Agata Kolodziej, Bess Campbell, Chelsea Becker, Danielle Thompson*_

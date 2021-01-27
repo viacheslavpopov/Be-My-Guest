@@ -11,6 +11,7 @@ using System.Linq;
 
 namespace BeMyGuest.Controllers
 {
+    [Authorize(Roles = "Admin, Host, Guest")]
     public class EventsController : Controller
     {
         private readonly BeMyGuestContext _db;
@@ -52,7 +53,7 @@ namespace BeMyGuest.Controllers
         {
             var thisEvent = _db.Events.FirstOrDefault(myEvent => myEvent.EventId == id);
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            ViewBag.IsCurrentUser = userId != null? userId == thisEvent.User.Id : false;
+            ViewBag.IsCurrentUser = userId != null ? userId == thisEvent.User.Id : false;
             return View(thisEvent);
         }
 
@@ -61,7 +62,7 @@ namespace BeMyGuest.Controllers
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var currentUser = await _userManager.FindByIdAsync(userId);
             var thisEvent = _db.Events.Where(entry => entry.User.Id == currentUser.Id).FirstOrDefault(myEvent => myEvent.EventId == id);
-            if(thisEvent == null)
+            if (thisEvent == null)
             {
                 return RedirectToAction("Details", new { id = id });
             }
@@ -73,67 +74,65 @@ namespace BeMyGuest.Controllers
         {
             _db.Entry(myEvent).State = EntityState.Modified;
             _db.SaveChanges();
-            return RedirectToAction("Details", new { id = myEvent.EventId});
+            return RedirectToAction("Details", new { id = myEvent.EventId });
         }
 
         public async Task<ActionResult> AddGuest(int id)
-        { 
+        {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var currentUser = await _userManager.FindByIdAsync(userId);
             var thisEvent = _db.Events.Where(entry => entry.User.Id == currentUser.Id).FirstOrDefault(myEvent => myEvent.EventId == id);
-            if(thisEvent == null)
+            if (thisEvent == null)
             {
-                return RedirectToAction("Details", new { id = id});
+                return RedirectToAction("Details", new { id = id });
             }
-            ViewBag.GuestId = new SelectList(_db.Guests, "GuestId", "Type");
+            ViewBag.GuestId = new SelectList(_db.Guests, "GuestId", "Name");
             return View(thisEvent);
-            
         }
 
         [HttpPost]
         public ActionResult AddGuest(Event myEvent, int GuestId)
         {
-            if(GuestId != 0)
+            if (GuestId != 0)
             {
                 var returnedJoin = _db.Gathering
                     .Any(join => join.GuestId == GuestId && join.EventId == myEvent.EventId);
-                    if(!returnedJoin)
-                    {
-                        _db.Gathering.Add(new Gathering() { EventId = myEvent.EventId, GuestId = GuestId});
-                    }
+                if (!returnedJoin)
+                {
+                    _db.Gathering.Add(new Gathering() { EventId = myEvent.EventId, GuestId = GuestId });
+                }
             }
             _db.SaveChanges();
-            return RedirectToAction("Details", new { id = myEvent.EventId});
+            return RedirectToAction("Details", new { id = myEvent.EventId });
         }
 
         public async Task<ActionResult> AddHost(int id)
-        { 
+        {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var currentUser = await _userManager.FindByIdAsync(userId);
             var thisEvent = _db.Events.Where(entry => entry.User.Id == currentUser.Id).FirstOrDefault(myEvent => myEvent.EventId == id);
-            if(thisEvent == null)
+            if (thisEvent == null)
             {
-                return RedirectToAction("Details", new { id = id});
+                return RedirectToAction("Details", new { id = id });
             }
             ViewBag.HostId = new SelectList(_db.Hosts, "HostId", "Type");
             return View(thisEvent);
-            
         }
 
         [HttpPost]
         public ActionResult AddHost(Event myEvent, int HostId)
         {
-            if(HostId != 0)
+            if (HostId != 0)
             {
                 var returnedJoin = _db.Gathering
                     .Any(join => join.HostId == HostId && join.EventId == myEvent.EventId);
-                    if(!returnedJoin)
-                    {
-                        _db.Gathering.Add(new Gathering() { EventId = myEvent.EventId, HostId = HostId});
-                    }
+                if (!returnedJoin)
+                {
+                    _db.Gathering.Add(new Gathering() { EventId = myEvent.EventId, HostId = HostId });
+                }
             }
             _db.SaveChanges();
-            return RedirectToAction("Details", new { id = myEvent.EventId});
+            return RedirectToAction("Details", new { id = myEvent.EventId });
         }
 
         public async Task<ActionResult> Delete(int id)
@@ -141,9 +140,9 @@ namespace BeMyGuest.Controllers
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var currentUser = await _userManager.FindByIdAsync(userId);
             var thisEvent = _db.Events.Where(entry => entry.User.Id == currentUser.Id).FirstOrDefault(myEvents => myEvents.EventId == id);
-            if(thisEvent == null)
+            if (thisEvent == null)
             {
-                return RedirectToAction("Details", new { id = id});
+                return RedirectToAction("Details", new { id = id });
             }
             return View(thisEvent);
         }

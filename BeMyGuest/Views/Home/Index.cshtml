@@ -16,20 +16,40 @@
         <p class="card-text text-center text-muted">Create your first event by registering your new account today, or
             log in if you already have an account.</p>
         <a href="/account/register" class="card-link">Register</a>
-        <a href="/accountlogin" class="text-left card-link">Login</a>
+        <a href="/account/login" class="text-left card-link">Login</a>
     </div>
 </div>
 }
 else
 {
-    <div class="card mx-auto" style="width: 36rem;">
+    <div class="card mx-auto" style="width: 48rem;">
     <div class="card-body">
         <h5 class="card-title text-center">What would you like to do today?</h5>
         <p class="card-text text-center text-muted">Create an event, see an events guest list, view your details ...</p>
-        <a href="/hosts" class="card-link">Hosts Home</a>
-        <a href="/guests" class="card-link">Guests Home</a>
-        <a href="/events" class="card-link">Events Home</a>
-        <a href="/coviddataset" class="card-link">Covid Data Home</a>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card-body">
+                    <a href="/hosts" class="card-link">Hosts Home</a>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card-body">
+                    <a href="/guests" class="card-link">Guests Home</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card-body">
+                    <a href="/events" class="card-link">Events Home</a>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card-body">
+                    <a href="/coviddataset" class="card-link">Covid Data Home</a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 }
