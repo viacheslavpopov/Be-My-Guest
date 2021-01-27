@@ -1,0 +1,55 @@
+@using BeMyGuest.ViewModels
+@model EditRoleViewModel
+
+@{
+    ViewBag.Title = "Edit Role";
+    Layout = "_Layout";
+}
+
+<h1>Edit Role</h1>
+
+@using(Html.BeginForm())
+{
+    <div class="form-group row">
+        @Html.LabelFor(user => user.Id, new { @class = "col-for-label"})
+        <div class="col-sm-10">
+            @Html.TextBoxFor(user => user.Id, new {  @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(user => user.RoleName, new { @class = "col-for-label"})
+        <div class="col-sm-10">
+            @Html.TextBoxFor(user => user.RoleName, new { @class= "form-control"})
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <input type="submit" value="Save Edit" class="btn btn-info">
+            <a asp-action="Index" class="btn btn-primary">Cancel</a>
+        </div>
+    </div>
+}
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="card">
+        <div class="card-header">
+            <h3>Users in this role</h3>
+        </div>
+        <div class="card-body">
+            @if (Model.Users.Any())
+            {
+                foreach (var user in Model.Users)
+                {
+                    <h5 class="card-title">@user</h5>
+                }
+            }
+            else
+            {
+                <h5 class="card-title">None at the moment</h5>
+            }
+        </div>
+        <div class="card-footer">
+        @Html.ActionLink("Add or remove users from role", "EditUsersInRole", new { id = @Model.Id })
+        </div>
+    </div>
+</form>

@@ -5,20 +5,32 @@
 @using BeMyGuest.ViewModels
 @model RegisterViewModel
 
-<h1>Register New User</h1>
+<div class="container">
+    <h1>Register New User</h1>
+    <hr>
 
-@*<h1>@Model.error.description</h1>*@
-<hr>
-@using (Html.BeginForm("Register", "Account", FormMethod.Post))
-{
-    @Html.LabelFor(user => user.Email)
-    @Html.TextBoxFor(user => user.Email)
+    @if(ViewBag.Error != null)
+    {
+        <h3>@ViewBag.Error, Please try again.</h3>
+    }
 
-    @Html.LabelFor(user => user.Password)
-    @Html.PasswordFor(user => user.Password)
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+    {
+        @Html.LabelFor(user => user.Email)
+        @Html.TextBoxFor(user => user.Email)
 
-    @Html.LabelFor(user => user.ConfirmPassword)
-    @Html.PasswordFor(user => user.ConfirmPassword)
+            <div class="form-group">
+                @Html.LabelFor(user => user.Password)
+                @Html.PasswordFor(user => user.Password)
+            </div>
 
-    <input type="submit" value="Register" class="btn btn-info">
-}
+            <div class="form-group">
+                @Html.LabelFor(user => user.ConfirmPassword)
+                @Html.PasswordFor(user => user.ConfirmPassword)
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Register" class="btn btn-default">
+            </div>
+        }
+</div>

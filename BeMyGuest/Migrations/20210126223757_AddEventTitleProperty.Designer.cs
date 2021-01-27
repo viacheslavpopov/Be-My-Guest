@@ -3,14 +3,16 @@ using System;
 using BeMyGuest.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BeMyGuest.Migrations
 {
     [DbContext(typeof(BeMyGuestContext))]
-    partial class BeMyGuestContextModelSnapshot : ModelSnapshot
+    [Migration("20210126223757_AddEventTitleProperty")]
+    partial class AddEventTitleProperty
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -72,23 +74,19 @@ namespace BeMyGuest.Migrations
                     b.Property<int>("CovidDataId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("AgeAnswer");
+                    b.Property<string>("ExposureLevel");
 
-                    b.Property<bool>("Cough");
+                    b.Property<bool>("HighRisk");
 
-                    b.Property<string>("Explanation");
+                    b.Property<bool>("Prescreening");
 
-                    b.Property<bool>("Fever");
+                    b.Property<bool>("RecentTravel");
 
-                    b.Property<string>("Question");
-
-                    b.Property<string>("SexAnswer");
-
-                    b.Property<bool>("Sob");
+                    b.Property<string>("Symptoms");
 
                     b.Property<string>("UserId");
 
-                    b.Property<bool>("YesNo");
+                    b.Property<bool>("Vaccine");
 
                     b.HasKey("CovidDataId");
 

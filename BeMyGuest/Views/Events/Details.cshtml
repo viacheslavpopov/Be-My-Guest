@@ -1,0 +1,39 @@
+@{
+    Layout = "_Layout";
+}
+
+@model BeMyGuest.Models.Event
+@using System.Security.Claims
+
+<h1>Event Details</h1>
+<h2>Event Title: @Html.DisplayFor(model => model.EventTitle)</h2>
+
+@* @if(@Model.Guests.Count == 0)
+{
+    <h4>There are no guests invited to this event yet</h4>
+}
+else
+{
+    <h4>Guests:</h4>
+    <ul>
+        @foreach(var join in Model.Guests)
+        {
+            <li>@join.Guest.GuestName</li>
+            @if(User.Identity.IsAuthenticated && ViewBag.IsCurrentUser)
+            {
+                @using (Html.BeginForm("DeleteGuest", "Flavors"))
+                {
+                    @Html.Hidden("joinId", @join.GatheringId)
+                    <input type="submit" value="Delete" class="btn btn-default"/>
+                }
+            }
+        }
+    </ul>
+} *@
+
+@if (User.Identity.IsAuthenticated && ViewBag.IsCurrentUser)
+{
+    <p>@Html.ActionLink("Edit Event", "Edit", new { id = Model.EventId }, new {@class="btn btn-primary"})</p>
+    <p>@Html.ActionLink("Add a Guest", "AddGuest", new { id = Model.EventId }, new {@class ="btn btn-primary"})</p>
+    <p>@Html.ActionLink("Delete Event", "Delete", new { id = Model.EventId }, new {@class ="btn btn-primary"})</p>
+}

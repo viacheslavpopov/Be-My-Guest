@@ -1,0 +1,23 @@
+@{
+    Layout = "_Layout";
+}
+
+@using BeMyGuest.Models
+@model List<BeMyGuest.Models.Event>
+
+<h2>Your Events</h2>
+<hr>
+@if (Model.Any())
+{
+    <ul>
+        @foreach(Event myEvent in Model)
+        {
+            <li>@Html.ActionLink($"{myEvent.EventTitle}", "Details", new { id = myEvent.EventId })</li>
+        }
+    </ul>
+}
+else
+{
+    <h3>There are no events added yet.</h3>
+}
+<h3>@Html.ActionLink("Add a New Event", "Create") || @Html.ActionLink("Back to Home", "Index", "Home")</h3>

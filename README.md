@@ -39,11 +39,13 @@
 
 ## **Description**
 
+[![Be-My-Guest-Opt1-3.png](https://i.postimg.cc/ydMmPLrY/Be-My-Guest-Opt1-3.png)
+
 ## **Preview**
 
 ## **Schema**
 
-[![Be-My-Guest-Schema.png](https://i.postimg.cc/8C0NgnV9/Be-My-Guest-Schema.png)]
+[![Be-My-Guest-Schema.png](https://i.postimg.cc/8C0NgnV9/Be-My-Guest-Schema.png)
 
 ## Setup/Installation Requirements
 
@@ -164,11 +166,14 @@ CSS<br>
 HTML<br>
 Bootstrap<br>
 JQuery<br>
-JavaScript
+JavaScript<br>
+[Google Fonts](fonts.google.com)<br>
+[Canva](canva.com)<br>
 
 ## Stretch Goals
 
 - Implementing OAuth for user login.
+- Integrate social media connections.
 
 ## Installation Requirements
 

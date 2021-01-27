@@ -6,14 +6,26 @@
 @model LoginViewModel
 
 <h1>Log In with your Account</h1>
+
+@if(ViewBag.Error != null)
+{
+  <h3>@ViewBag.Error, Please try again.</h3>
+}
+
 <hr>
 @using (Html.BeginForm())
 {
+    <div class="form-group">
     @Html.LabelFor(account => account.Email)
     @Html.TextBoxFor(account => account.Email)
+    </div>
 
+    <div class="form-group">
     @Html.LabelFor(account => account.Password)
     @Html.PasswordFor(account => account.Password)
+    </div>
 
-    <input type="submit" value="Log In" class="btn btn-info">
+    <div class="form-group">
+    <input type="submit" value="Log In" class="btn btn-default">
+    </div>
 }
