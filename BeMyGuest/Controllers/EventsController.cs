@@ -76,17 +76,103 @@ namespace BeMyGuest.Controllers
             return RedirectToAction("Details", new { id = myEvent.EventId});
         }
 
-        // public async Task<ActionResult> AddGuest
-         
-    //   for ( var i =0; i<number; i++)
-    //   {
-    //     if (bookId != 0)
-    //     {
-    //       _db.Copies.Add(copy);
-    //       _db.SaveChanges();
-    //       copy.CopyId ++;
-    //     }
-    //   }
-    //   return RedirectToAction("Index", "
+        public async Task<ActionResult> AddGuest(int id)
+        { 
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _userManager.FindByIdAsync(userId);
+            var thisEvent = _db.Events.Where(entry => entry.User.Id == currentUser.Id).FirstOrDefault(myEvent => myEvent.EventId == id);
+            if(thisEvent == null)
+            {
+                return RedirectToAction("Details", new { id = id});
+            }
+            ViewBag.GuestId = new SelectList(_db.Guests, "GuestId", "Type");
+            return View(thisEvent);
+            
+        }
+
+        [HttpPost]
+        public ActionResult AddGuest(Event myEvent, int GuestId)
+        {
+            if(GuestId != 0)
+            {
+                var returnedJoin = _db.Gathering
+                    .Any(join => join.GuestId == GuestId && join.EventId == myEvent.EventId);
+                    if(!returnedJoin)
+                    {
+                        _db.Gathering.Add(new Gathering() { EventId = myEvent.EventId, GuestId = GuestId});
+                    }
+            }
+            _db.SaveChanges();
+            return RedirectToAction("Details", new { id = myEvent.EventId});
+        }
+
+        public async Task<ActionResult> AddHost(int id)
+        { 
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _userManager.FindByIdAsync(userId);
+            var thisEvent = _db.Events.Where(entry => entry.User.Id == currentUser.Id).FirstOrDefault(myEvent => myEvent.EventId == id);
+            if(thisEvent == null)
+            {
+                return RedirectToAction("Details", new { id = id});
+            }
+            ViewBag.HostId = new SelectList(_db.Hosts, "HostId", "Type");
+            return View(thisEvent);
+            
+        }
+
+        [HttpPost]
+        public ActionResult AddHost(Event myEvent, int HostId)
+        {
+            if(HostId != 0)
+            {
+                var returnedJoin = _db.Gathering
+                    .Any(join => join.HostId == HostId && join.EventId == myEvent.EventId);
+                    if(!returnedJoin)
+                    {
+                        _db.Gathering.Add(new Gathering() { EventId = myEvent.EventId, HostId = HostId});
+                    }
+            }
+            _db.SaveChanges();
+            return RedirectToAction("Details", new { id = myEvent.EventId});
+        }
+
+        public async Task<ActionResult> Delete(int id)
+        {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _userManager.FindByIdAsync(userId);
+            var thisEvent = _db.Events.Where(entry => entry.User.Id == currentUser.Id).FirstOrDefault(myEvents => myEvents.EventId == id);
+            if(thisEvent == null)
+            {
+                return RedirectToAction("Details", new { id = id});
+            }
+            return View(thisEvent);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            var thisEvent = _db.Events.FirstOrDefault(myEvents => myEvents.EventId == id);
+            _db.Events.Remove(thisEvent);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult DeleteGuest(int joinId)
+        {
+            var joinEntry = _db.Gathering.FirstOrDefault(entry => entry.GatheringId == joinId);
+            _db.Gathering.Remove(joinEntry);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult DeleteHost(int joinId)
+        {
+            var joinEntry = _db.Gathering.FirstOrDefault(entry => entry.GatheringId == joinId);
+            _db.Gathering.Remove(joinEntry);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
