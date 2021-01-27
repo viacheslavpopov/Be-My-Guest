@@ -10,13 +10,12 @@
 <h1 class="bg-info text-white">List of Roles</h1>
 
 <table class="table table-striped table-bordered table-bordered">
-    <tr><th>Role Name</th><th>Role Id</th><th>Users</th><th>Edit</th><th>Delete</th></tr>
+    <tr><th>Role Name</th><th>Role Id</th><th>Edit</th><th>Delete</th></tr>
         @foreach (var role in Model)
         {
             <tr>
                 <td>@role.Name</td>
                 <td>@role.Id</td>
-                <td></td>
                 <td>@Html.ActionLink("Edit", "EditRole", new { id = @role.Id })</td>
                 <td>@Html.ActionLink("Delete", "Delete", new { id = @role.Id })
                 </td>

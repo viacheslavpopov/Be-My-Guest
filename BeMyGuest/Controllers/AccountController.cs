@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using BeMyGuest.Models;
+using System;
 using System.Threading.Tasks;
 using BeMyGuest.ViewModels;
 
@@ -32,26 +33,33 @@ namespace BeMyGuest.Controllers
         [HttpPost]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            if(ModelState.IsValid)
+            if(model.Password != model.ConfirmPassword)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                IdentityResult result = await _userManager.CreateAsync(user, model.Password);
-                if(result.Succeeded)
-                {
-                    return RedirectToAction("Index");
-                }
-            }
-            else
-            {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                IdentityResult result = await _userManager.CreateAsync(user, model.Password);
-                foreach(var error in result.Errors)
-                {
-                    ModelState.AddModelError("", error.Description);
-                }
+                ViewBag.Error = "Confirm that your passwords match";
                 return View();
             }
-            return View();
+            else
+            {   
+                try
+                {
+                    var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                    IdentityResult result = await _userManager.CreateAsync(user, model.Password);
+                    if(result.Succeeded)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Error = result;
+                        return View();
+                    }
+                }
+                catch(Exception result)
+                {
+                    ViewBag.Error = result.Message;
+                    return View();
+                }
+            }
         }
 
         public ActionResult Login()
@@ -69,6 +77,7 @@ namespace BeMyGuest.Controllers
             }
             else
             {
+                ViewBag.Error = result;
                 return View();
             }
         }

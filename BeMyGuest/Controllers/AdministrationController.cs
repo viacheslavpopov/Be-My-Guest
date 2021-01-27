@@ -73,7 +73,7 @@ namespace BeMyGuest.Controllers
                 Id = role.Id,
                 RoleName = role.Name,
             };
-            foreach( var user in _userManager.Users)
+            foreach(var user in _userManager.Users)
             {
                 if(await _userManager.IsInRoleAsync(user, role.Name))
                 {
@@ -182,13 +182,17 @@ namespace BeMyGuest.Controllers
                 if (result.Succeeded)
                 {
                     if (i < (model.Count - 1))
+                    {
                         continue;
+                    }
                     else
+                    {
                         return RedirectToAction("EditRole", new { Id = Id });
+                    }
                 }
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index"); // re-routed to index.. skipped loop entirely
         }
 
         [HttpGet]
