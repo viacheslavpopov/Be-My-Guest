@@ -15,13 +15,14 @@ namespace BeMyGuest.Models
         public int CovidDataId { get; set; }
         // public int GuestId { get; set; }
         public string Question { get; set; }
-        // public string SexAnswer { get; set; }
-        // public int AgeAnswer { get; set; }
-        // public bool Fever { get; set; }
-        // public bool Cough { get; set; }
-        // public bool Sob { get; set; }
-        // public bool YesNo { get; set; }
-        // public string Explanation { get; set; }
+        public string SexAnswer { get; set; }
+        public int AgeAnswer { get; set; }
+        public bool Fever { get; set; }
+        public bool Cough { get; set; }
+        public bool Sob { get; set; }
+        public bool YesNo { get; set; }
+        public string Explanation { get; set; }
+        public int GuestCovidInfoId { get; set; }
         public virtual ApplicationUser User { get; set; }
         public virtual ICollection<Guest> Guests { get; set; }
 
@@ -39,9 +40,7 @@ namespace BeMyGuest.Models
         {
             var apiCallTask = EvidencesApiHelper.Get(id);
             var result = apiCallTask.Result;
-            Console.WriteLine("RESULT IN CONTROLLER: {0}", result);
             JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
-            Console.WriteLine("RESULT IN CONTROLLER: {0}", jsonResponse.ToString());
             CovidData CovidData = JsonConvert.DeserializeObject<CovidData>(jsonResponse.ToString());
 
             return CovidData;

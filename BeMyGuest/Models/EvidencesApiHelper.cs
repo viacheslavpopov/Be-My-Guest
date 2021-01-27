@@ -12,7 +12,6 @@ namespace BeMyGuest.Models
             RestRequest request = new RestRequest($"evidences", Method.GET);
             var response = await client.ExecuteTaskAsync(request);
             int StatusCode = (int)response.StatusCode;
-            Console.WriteLine("THIS IS THE RESPONSE!!!:" + StatusCode);
             return response.Content;
         }
         public static async Task<string> Get(int id)
@@ -20,7 +19,6 @@ namespace BeMyGuest.Models
             RestClient client = new RestClient("http://localhost:5001/api");
             RestRequest request = new RestRequest($"evidences/{id}", Method.GET);
             var response = await client.ExecuteTaskAsync(request);
-            Console.WriteLine("THIS IS THE RESPONSE!!!:" + response.Content);
             return response.Content;
         }
         public static async Task Post(string newCovidData)

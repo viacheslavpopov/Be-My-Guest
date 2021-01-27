@@ -1,0 +1,13 @@
+@using BeMyGuest.Models;
+
+<h1>Test </h1>
+
+<ol>
+    @foreach (GuestCovidInfo guestInfo in Model)
+    {
+        <ol>
+            <li>Id: @guestInfo.Sex</li>
+        </ol>
+        <br>
+    }
+</ol>
