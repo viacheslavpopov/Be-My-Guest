@@ -22,6 +22,12 @@ namespace CovidApi.Controllers
             var query = _db.Evidences.AsQueryable();
             return query.ToList();
         }
+        //GET api/evidences/{1}
+        [HttpGet("{id}")]
+        public ActionResult<Evidence> GetById(int id)
+        {
+            return _db.Evidences.FirstOrDefault(entry => entry.EvidenceId == id);
+        }
         //POST api/evidences
         [HttpPost]
         public void Post([FromBody] Evidence evidence)

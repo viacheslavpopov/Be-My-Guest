@@ -33,7 +33,7 @@ namespace CovidApi
                 {
                     Version = "v1",
                     Title = "COVID API",
-                    Description = "ASP.NET Core Web API to access information on state and national parks.",
+                    Description = "todo.",
                     Contact = new OpenApiContact
                     {
                         Name = "Agata Kolodziej, Bess Campbell, Chelsea Becker & Danielle Thompson",
