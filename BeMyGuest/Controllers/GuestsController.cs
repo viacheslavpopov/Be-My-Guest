@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace BeMyGuestMVC.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class GuestsController: Controller
     {
         private readonly BeMyGuestContext _db;
@@ -37,7 +37,7 @@ namespace BeMyGuestMVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Guest guest, int GuestId)
+        public ActionResult Create(Guest guest)
         {
             _db.Guests.Add(guest);
             _db.SaveChanges();
