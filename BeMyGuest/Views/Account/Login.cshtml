@@ -6,26 +6,31 @@
 @model LoginViewModel
 
 <h1>Log In with your Account</h1>
-
-@if(ViewBag.Error != null)
-{
-  <h3>@ViewBag.Error, Please try again.</h3>
-}
-
 <hr>
-@using (Html.BeginForm())
+
+@if (ViewBag.Error != null)
 {
-    <div class="form-group">
-    @Html.LabelFor(account => account.Email)
-    @Html.TextBoxFor(account => account.Email)
-    </div>
-
-    <div class="form-group">
-    @Html.LabelFor(account => account.Password)
-    @Html.PasswordFor(account => account.Password)
-    </div>
-
-    <div class="form-group">
-    <input type="submit" value="Log In" class="btn btn-default">
-    </div>
+    <h3>@ViewBag.Error, Please try again.</h3>
 }
+
+<div class="card mx-auto" style="width: 36rem;">
+    <div class="card-body">
+        <h5 class="card-title text-center">Log In</h5>
+        <p class="card-text text-center text-muted">
+            @using (Html.BeginForm())
+            {
+            <div class="form-control-lg form-row">
+                @Html.LabelFor(account => account.Email)
+                @Html.TextBoxFor(account => account.Email)
+            </div>
+
+            <div class="form-control-lg form-row">
+                @Html.LabelFor(account => account.Password)
+                @Html.PasswordFor(account => account.Password)
+            </div>
+            <div class="card-text text-center text-muted">
+                <input type="submit" value="Log In" class="btn btn-outline-info">
+            </div>
+            }
+    </div>
+</div>

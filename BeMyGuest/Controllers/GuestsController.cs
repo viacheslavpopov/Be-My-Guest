@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace BeMyGuestMVC.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin, Guest, Host")]
     public class GuestsController : Controller
     {
         private readonly BeMyGuestContext _db;
@@ -24,6 +24,7 @@ namespace BeMyGuestMVC.Controllers
             _db = db;
         }
 
+        // show only this users guests
         public ActionResult Index()
         {
             List<Guest> model = _db.Guests.ToList();
