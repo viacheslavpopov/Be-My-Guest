@@ -9,7 +9,6 @@ using System.Security.Claims;
 using System.Collections.Generic;
 using System.Linq;
 
-
 namespace BeMyGuest.Controllers
 {
     public class EventsController : Controller
@@ -78,7 +77,7 @@ namespace BeMyGuest.Controllers
         }
 
         public async Task<ActionResult> AddGuest(int id)
-        {
+        { 
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var currentUser = await _userManager.FindByIdAsync(userId);
             var thisEvent = _db.Events.Where(entry => entry.User.Id == currentUser.Id).FirstOrDefault(myEvent => myEvent.EventId == id);
@@ -88,6 +87,7 @@ namespace BeMyGuest.Controllers
             }
             ViewBag.GuestId = new SelectList(_db.Guests, "GuestId", "Type");
             return View(thisEvent);
+            
         }
 
         [HttpPost]
@@ -107,7 +107,7 @@ namespace BeMyGuest.Controllers
         }
 
         public async Task<ActionResult> AddHost(int id)
-        {
+        { 
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var currentUser = await _userManager.FindByIdAsync(userId);
             var thisEvent = _db.Events.Where(entry => entry.User.Id == currentUser.Id).FirstOrDefault(myEvent => myEvent.EventId == id);
@@ -117,6 +117,7 @@ namespace BeMyGuest.Controllers
             }
             ViewBag.HostId = new SelectList(_db.Hosts, "HostId", "Type");
             return View(thisEvent);
+            
         }
 
         [HttpPost]

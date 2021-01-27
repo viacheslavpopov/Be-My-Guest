@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using BeMyGuest.Models;
+using System;
 using System.Threading.Tasks;
 using BeMyGuest.ViewModels;
 
@@ -32,26 +33,33 @@ namespace BeMyGuest.Controllers
         [HttpPost]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            if(ModelState.IsValid)
+            if(model.Password != model.ConfirmPassword)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                IdentityResult result = await _userManager.CreateAsync(user, model.Password);
-                if(result.Succeeded)
-                {
-                    return RedirectToAction("Index");
-                }
+                ViewBag.Error = "Confirm that your passwords match";
+                return View();
             }
             else
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                IdentityResult result = await _userManager.CreateAsync(user, model.Password);
-                foreach(var error in result.Errors)
+                try
                 {
-                    ModelState.AddModelError("", error.Description);
+                    var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                    IdentityResult result = await _userManager.CreateAsync(user, model.Password);
+                    if(result.Succeeded)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Error = result;
+                        return View();
+                    }
                 }
-                return View();
+                catch(Exception result)
+                {
+                    ViewBag.Error = result.Message;
+                    return View();
+                }
             }
-            return View();
         }
 
         public ActionResult Login()
@@ -65,10 +73,11 @@ namespace BeMyGuest.Controllers
             Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: true, lockoutOnFailure: false);
             if(result.Succeeded)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index");
             }
             else
             {
+                ViewBag.Error = result;
                 return View();
             }
         }
