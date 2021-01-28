@@ -27,15 +27,15 @@ namespace BeMyGuest.Models
 
             return infoList;
         }
-        public static GuestCovidInfo GetDetails(int id)
-        {
-            var apiCallTask = DiagnosesApiHelper.Get(id);
-            var result = apiCallTask.Result;
-            JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
-            GuestCovidInfo GuestCovidInfo = JsonConvert.DeserializeObject<GuestCovidInfo>(jsonResponse.ToString());
+        // public static GuestCovidInfo GetDetails(int id)
+        // {
+        //     var apiCallTask = DiagnosesApiHelper.Get(id);
+        //     var result = apiCallTask.Result;
+        //     JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
+        //     GuestCovidInfo GuestCovidInfo = JsonConvert.DeserializeObject<GuestCovidInfo>(jsonResponse.ToString());
 
-            return GuestCovidInfo;
-        }
+        //     return GuestCovidInfo;
+        // }
         public static void Post(GuestCovidInfo guestCovidInfo)
         {
             string jsonGuestCovidData = JsonConvert.SerializeObject(guestCovidInfo);

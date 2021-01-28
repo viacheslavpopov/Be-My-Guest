@@ -25,23 +25,28 @@ namespace BeMyGuest.Controllers
             GuestCovidInfo.Post(guestInfo);
             return RedirectToAction("Index");
         }
-        public IActionResult Details(int id)
-        {
-            var covidInfo = GuestCovidInfo.GetDetails(id);
-            return View(covidInfo);
-        }
-        public IActionResult Edit(int id)
-        {
-            var covidInfo = GuestCovidInfo.GetDetails(id);
-            return View(covidInfo);
-        }
 
-        [HttpPost]
-        public IActionResult Details(int id, GuestCovidInfo guestInfo)
+        // public IActionResult Details(int id)
+        // {
+        //     var covidInfo = GuestCovidInfo.GetDetails(id);
+        //     return View(covidInfo);
+        // }
+        // public IActionResult Edit(int id)
+        // {
+        //     var covidInfo = GuestCovidInfo.GetDetails(id);
+        //     return View(covidInfo);
+        // }
+
+        // [HttpPost]
+        // public IActionResult Details(int id, GuestCovidInfo guestInfo)
+        // {
+        //     guestInfo.GuestCovidInfoId = id;
+        //     GuestCovidInfo.Put(guestInfo);
+        //     return RedirectToAction("Details", id);
+        // }
+        public IActionResult Details()
         {
-            guestInfo.GuestCovidInfoId = id;
-            GuestCovidInfo.Put(guestInfo);
-            return RedirectToAction("Details", id);
+            return View();
         }
 
         public IActionResult Delete(int id)

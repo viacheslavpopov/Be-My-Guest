@@ -1,0 +1,10 @@
+@{
+    Layout = "_Layout";
+}
+
+@model BeMyGuest.Models.CovidData
+
+<h1>@Model.Question</h1>
+<h2>@Model.Explanation</h2>
+
+@Html.ActionLink("Back to Questions", "Index");

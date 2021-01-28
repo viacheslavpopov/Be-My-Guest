@@ -1,13 +1,17 @@
+@{
+    Layout = "_Layout";
+}
 @using BeMyGuest.Models;
 
-<h1>Test </h1>
+<h1>Guest COVID Data Results</h1>
 
-<ol>
-    @foreach (GuestCovidInfo guestInfo in Model)
-    {
-        <ol>
-            <li>Id: @guestInfo.Sex</li>
-        </ol>
-        <br>
-    }
-</ol>
+<h2>Total Guests: 10</h2>
+<h2>Total Completed COVID Questionnaires: 10</h2>
+<h2>Total Vaccinated Guests: 3</h2>
+<h2>Total Guests Currently Exhibiting Symptoms: 1</h2>
+<h2>Exposure Level: </h2>
+<ul>
+    <li>Minimal: 3 Guests</li>
+    <li>Moderate: 3 Guests</li>
+    <li>Chronic: 4 Guests</li>
+</ul>

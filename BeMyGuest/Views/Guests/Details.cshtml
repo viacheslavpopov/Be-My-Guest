@@ -9,29 +9,47 @@
 
 <h3>@Html.DisplayNameFor(model => model.Name):</h3>
 <h4>@Html.DisplayFor(model => model.Name)</h4>
+<h5>Pronouns: They/Them</h5>
+<h5>Vaccinated: Yes</h5>
+<h5>Recent Travel: No</h5>
+<h5>COVID Questionnaire: Completed</h5>
+<h5>Medical Mobility Needs: None</h5>
+<h5>Medical Conditions: Epilepsy</h5>
+<h5>Service Animal: Yes</h5>
+<h6>Instructions: Please do not pet dog</h6>
+<h5>Dietary Restrictions: Vegan</h5>
+<h5>Allergies: Shellfish</h5>
+<h5>Preferred Lanuage: Russian</h5>
+<h5>Alcohol-Friendly</h5>
+<h5>Physical Contact: Not a hugger</h5>
+<h5>Plus 1: No</h5>
+<h5>Small Children in Tow: No</h5>
+
+
 
 @* @if(@Model.Hosts.Count == 0)
-{
+    {
     <p>This event does not have any guests yet.</p>
     <hr />
-}
-else
-{
+    }
+    else
+    {
     <h3>Guest List:</h3>
     <ul>
-        @foreach(var join in Model.Host)
-        {
-            <div class="form-group">
-                <li><h4>@join.Guest.GuestName</h4></li>
-            </div>
-            @using (Html.BeginForm("DeleteJoin", "Events"))
-            {
-                <div class="form-group">
-                    @Html.Hidden("joinId", @join.GatheringId)
-                    <input type="submit" value="Remove Host" class="btn btn-default"/>
-                </div>
-            }
-        }
+    @foreach(var join in Model.Host)
+    {
+    <div class="form-group">
+    <li><h4>@join.Guest.GuestName</h4></li>
+    </div>
+    @using (Html.BeginForm("DeleteJoin", "Events"))
+    {
+    <div class="form-group">
+    @Html.Hidden("joinId", @join.GatheringId)
+    <input type="submit" value="Remove Host" class="btn btn-default"/>
+    </div>
+    }
+    }
     </ul>
-} *@
-<h3>@Html.ActionLink("Guests Home", "Index") || @Html.ActionLink("Edit Guest", "Edit", new { id = Model.GuestId }) || @Html.ActionLink("Delete Guest", "Delete", new { id = Model.GuestId })</h3>
+    } *@
+<h3>@Html.ActionLink("Guests Home", "Index") || @Html.ActionLink("Edit Guest", "Edit", new { id = Model.GuestId }) ||
+    @Html.ActionLink("Delete Guest", "Delete", new { id = Model.GuestId })</h3>

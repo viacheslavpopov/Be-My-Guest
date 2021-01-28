@@ -41,7 +41,7 @@ namespace BeMyGuest.Controllers
         {
             covid.CovidDataId = id;
             CovidData.Put(covid);
-            return RedirectToAction("Details", id);
+            return RedirectToAction("Index");
         }
 
         public IActionResult Delete(int id)
