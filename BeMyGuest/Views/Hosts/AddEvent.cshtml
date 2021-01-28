@@ -1,8 +1,9 @@
-@{
+@* @{
     Layout = "_Layout";
 }
 
-@model BeMyGuest.Models.Event
+@model BeMyGuest.Models.Host
+
 
 <h1>Add Event</h1>
 @using (Html.BeginForm())
@@ -11,4 +12,4 @@
     <h4>Event Title: @Html.TextBoxFor(model => model.EventTitle)</h4>
 
     <input type="submit" value="Add Event" class="btn btn-default" />
-}
+} *@
