@@ -12,7 +12,7 @@ namespace BeMyGuest.Models
         // {
         //     this.JoinEntries = new HashSet<Gathering>();
         // }
-        public int CovidDataId { get; set; }
+        public int EvidenceId { get; set; }
         // public int GuestId { get; set; }
         public string Question { get; set; }
         public string SexAnswer { get; set; }
@@ -53,7 +53,7 @@ namespace BeMyGuest.Models
         public static void Put(CovidData covidData)
         {
             string jsonCovidData = JsonConvert.SerializeObject(covidData);
-            var apiCallTask = EvidencesApiHelper.Put(covidData.CovidDataId, jsonCovidData);
+            var apiCallTask = EvidencesApiHelper.Put(covidData.EvidenceId, jsonCovidData);
         }
         public static void Delete(int id)
         {

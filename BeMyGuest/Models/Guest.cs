@@ -55,7 +55,7 @@ namespace BeMyGuest.Models
         //Outside Table Data
         public virtual ApplicationUser User { get; set; }
         public virtual ICollection<Gathering> JoinEntries { get; set; }
-        public int? CovidDataId { get; set; }
+        public int? EvidenceId { get; set; }
         public virtual CovidData CovidData { get; set; }
     }
 }

@@ -39,7 +39,7 @@ namespace BeMyGuest.Controllers
         [HttpPost]
         public IActionResult Details(int id, CovidData covid)
         {
-            covid.CovidDataId = id;
+            covid.EvidenceId = id;
             CovidData.Put(covid);
             return RedirectToAction("Index");
         }

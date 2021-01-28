@@ -1,6 +1,7 @@
 @{
     Layout = "_Layout";
 }
+@using BeMyGuest.Models;
 
 <h1>Covid Questionnaire</h1>
 <h2>We here at By My Guest understand COVID is an awkward topic to discuss with hosts and guest but, it is important for
@@ -9,14 +10,18 @@
 <h2>Please take a moment to read and answer each of the COVID-19 risk assessment questions to help ensure everyone's
     safety at your event.</h2>
 
-<h3>Questions</h3>
-@for (int i = 1; i < @Model.Count; ++i)
-{
+@* <h3>Questions</h3>
+    @for (int i = 1; i < @Model.Count; ++i)
+    {
     <li>@Html.ActionLink($"{Model[i].Question}", "Edit", new { id = Model[i].CovidDataId } )</li>
+    } *@
+
+@foreach (CovidData covidData in Model)
+{
+    <li>@Html.ActionLink($"{covidData.Question}", "Edit", new { id = covidData.EvidenceId } )</li>
 }
 
 
 
 
-
-<h3>@Html.ActionLink("Next", "Edit") || @Html.ActionLink("Back to Home", "Index", "Home")</h3>
+<h3> @Html.ActionLink("Back to Home", "Index", "Home")</h3>
