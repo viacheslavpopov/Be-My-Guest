@@ -35,4 +35,5 @@ else
     </ul>
 } *@
 
-<h3>@Html.ActionLink("Guests Home", "Index") || @Html.ActionLink("Edit Guest", "Edit", new { id = Model.HostId }) || @Html.ActionLink("Delete Guest", "Delete", new { id = Model.HostId })</h3>
+<h3>@Html.ActionLink("Host Home", "Index") || @Html.ActionLink("Edit Host", "Edit", new { id = Model.HostId }) || @Html.ActionLink("Delete Host", "Delete", new { id = Model.HostId })</h3>
+<h3>@Html.ActionLink("Create an Event", "AddEvent", new { id = Model.HostId})</h3>

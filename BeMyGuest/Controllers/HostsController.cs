@@ -11,7 +11,8 @@ using BeMyGuest.Models;
 
 namespace BeMyGuest.Controllers
 {
-    [Authorize(Roles = "Admin, Host")]
+    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Host")]
     public class HostsController : Controller
     {
         private readonly BeMyGuestContext _db;

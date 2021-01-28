@@ -11,7 +11,9 @@ using System.Linq;
 
 namespace BeMyGuest.Controllers
 {
-    [Authorize(Roles = "Admin, Host, Guest")]
+    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Host")]
+    [Authorize(Roles = "Guest")]
     public class EventsController : Controller
     {
         private readonly BeMyGuestContext _db;

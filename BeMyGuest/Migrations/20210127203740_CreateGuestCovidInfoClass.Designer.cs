@@ -350,15 +350,18 @@ namespace BeMyGuest.Migrations
                 {
                     b.HasOne("BeMyGuest.Models.Event", "Event")
                         .WithMany("JoinEntries")
-                        .HasForeignKey("EventId");
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("BeMyGuest.Models.Guest", "Guest")
                         .WithMany("JoinEntries")
-                        .HasForeignKey("GuestId");
+                        .HasForeignKey("GuestId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("BeMyGuest.Models.Host", "Host")
                         .WithMany("JoinEntries")
-                        .HasForeignKey("HostId");
+                        .HasForeignKey("HostId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("BeMyGuest.Models.Guest", b =>
