@@ -10,12 +10,12 @@ namespace BeMyGuest.Models
     {
         public GuestCovidInfo()
         {
-            this.CovidData = new HashSet<CovidData>();
+            this.Evidence = new HashSet<Evidence>();
         }
         public int GuestCovidInfoId { get; set; }
         public string Sex { get; set; }
         public int Age { get; set; }
-        public ICollection<CovidData> CovidData { get; set; }
+        public ICollection<Evidence> Evidence { get; set; }
 
         public static List<GuestCovidInfo> GetGuestCovidInfo()
         {

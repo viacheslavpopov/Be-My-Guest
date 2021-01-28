@@ -12,47 +12,47 @@ using BeMyGuest.Models;
 
 namespace BeMyGuest.Controllers
 {
-    public class CovidDataSetController : Controller
+    public class EvidencesController : Controller
     {
         public IActionResult Index()
         {
-            var covidList = CovidData.GetCovidData();
+            var covidList = Evidence.GetEvidence();
             return View(covidList);
         }
         [HttpPost]
-        public IActionResult Index(CovidData covid)
+        public IActionResult Index(Evidence evidence)
         {
-            CovidData.Post(covid);
+            Evidence.Post(evidence);
             return RedirectToAction("Index");
         }
         public IActionResult Details(int id)
         {
-            var covidData = CovidData.GetDetails(id);
-            return View(covidData);
+            var evidence = Evidence.GetDetails(id);
+            return View(evidence);
         }
         public IActionResult Edit(int id)
         {
-            var covidData = CovidData.GetDetails(id);
-            return View(covidData);
+            var evidence = Evidence.GetDetails(id);
+            return View(evidence);
         }
 
         [HttpPost]
-        public IActionResult Edit(CovidData covid)
+        public IActionResult Edit(Evidence evidence)
         {
-            CovidData.Put(covid);
-            if (covid.EvidenceId == 8)
+            Evidence.Put(evidence);
+            if (evidence.EvidenceId == 8)
             {
                 return RedirectToAction("Index");
             }
             else
             {
-                return RedirectToAction("Edit", new { id = covid.EvidenceId + 1 });
+                return RedirectToAction("Edit", new { id = evidence.EvidenceId + 1 });
             }
         }
 
         public IActionResult Delete(int id)
         {
-            CovidData.Delete(id);
+            Evidence.Delete(id);
             return RedirectToAction("Index");
         }
 

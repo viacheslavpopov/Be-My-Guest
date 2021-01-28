@@ -56,6 +56,6 @@ namespace BeMyGuest.Models
         public virtual ApplicationUser User { get; set; }
         public virtual ICollection<Gathering> JoinEntries { get; set; }
         public int? EvidenceId { get; set; }
-        public virtual CovidData CovidData { get; set; }
+        public virtual Evidence Evidence { get; set; }
     }
 }

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BeMyGuest.Migrations
 {
-    public partial class Initial : Migration
+    public partial class Inital : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -154,36 +154,12 @@ namespace BeMyGuest.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CovidDataSet",
-                columns: table => new
-                {
-                    CovidDataId = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    RecentTravel = table.Column<bool>(nullable: false),
-                    Vaccine = table.Column<bool>(nullable: false),
-                    Prescreening = table.Column<bool>(nullable: false),
-                    HighRisk = table.Column<bool>(nullable: false),
-                    ExposureLevel = table.Column<string>(nullable: true),
-                    Symptoms = table.Column<string>(nullable: true),
-                    UserId = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CovidDataSet", x => x.CovidDataId);
-                    table.ForeignKey(
-                        name: "FK_CovidDataSet_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Events",
                 columns: table => new
                 {
                     EventId = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    EventTitle = table.Column<string>(nullable: true),
                     EventDate = table.Column<DateTime>(nullable: false),
                     Venue = table.Column<string>(nullable: true),
                     VenueAddress = table.Column<string>(nullable: true),
@@ -199,6 +175,34 @@ namespace BeMyGuest.Migrations
                     table.PrimaryKey("PK_Events", x => x.EventId);
                     table.ForeignKey(
                         name: "FK_Events_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Evidences",
+                columns: table => new
+                {
+                    EvidenceId = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Question = table.Column<string>(nullable: true),
+                    SexAnswer = table.Column<string>(nullable: true),
+                    AgeAnswer = table.Column<int>(nullable: false),
+                    Fever = table.Column<bool>(nullable: false),
+                    Cough = table.Column<bool>(nullable: false),
+                    Sob = table.Column<bool>(nullable: false),
+                    YesNo = table.Column<bool>(nullable: false),
+                    Explanation = table.Column<string>(nullable: true),
+                    GuestCovidInfoId = table.Column<int>(nullable: false),
+                    UserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Evidences", x => x.EvidenceId);
+                    table.ForeignKey(
+                        name: "FK_Evidences_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -250,17 +254,17 @@ namespace BeMyGuest.Migrations
                     PlusOne = table.Column<bool>(nullable: false),
                     SmallChildren = table.Column<bool>(nullable: false),
                     UserId = table.Column<string>(nullable: true),
-                    CovidDataId = table.Column<int>(nullable: false)
+                    EvidenceId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Guests", x => x.GuestId);
                     table.ForeignKey(
-                        name: "FK_Guests_CovidDataSet_CovidDataId",
-                        column: x => x.CovidDataId,
-                        principalTable: "CovidDataSet",
-                        principalColumn: "CovidDataId",
-                        onDelete: ReferentialAction.Cascade);
+                        name: "FK_Guests_Evidences_EvidenceId",
+                        column: x => x.EvidenceId,
+                        principalTable: "Evidences",
+                        principalColumn: "EvidenceId",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Guests_AspNetUsers_UserId",
                         column: x => x.UserId,
@@ -270,7 +274,7 @@ namespace BeMyGuest.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Gatherings",
+                name: "Gathering",
                 columns: table => new
                 {
                     GatheringId = table.Column<int>(nullable: false)
@@ -281,21 +285,21 @@ namespace BeMyGuest.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Gatherings", x => x.GatheringId);
+                    table.PrimaryKey("PK_Gathering", x => x.GatheringId);
                     table.ForeignKey(
-                        name: "FK_Gatherings_Events_EventId",
+                        name: "FK_Gathering_Events_EventId",
                         column: x => x.EventId,
                         principalTable: "Events",
                         principalColumn: "EventId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Gatherings_Guests_GuestId",
+                        name: "FK_Gathering_Guests_GuestId",
                         column: x => x.GuestId,
                         principalTable: "Guests",
                         principalColumn: "GuestId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Gatherings_Hosts_HostId",
+                        name: "FK_Gathering_Hosts_HostId",
                         column: x => x.HostId,
                         principalTable: "Hosts",
                         principalColumn: "HostId",
@@ -340,34 +344,34 @@ namespace BeMyGuest.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_CovidDataSet_UserId",
-                table: "CovidDataSet",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Events_UserId",
                 table: "Events",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Gatherings_EventId",
-                table: "Gatherings",
+                name: "IX_Evidences_UserId",
+                table: "Evidences",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Gathering_EventId",
+                table: "Gathering",
                 column: "EventId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Gatherings_GuestId",
-                table: "Gatherings",
+                name: "IX_Gathering_GuestId",
+                table: "Gathering",
                 column: "GuestId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Gatherings_HostId",
-                table: "Gatherings",
+                name: "IX_Gathering_HostId",
+                table: "Gathering",
                 column: "HostId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Guests_CovidDataId",
+                name: "IX_Guests_EvidenceId",
                 table: "Guests",
-                column: "CovidDataId");
+                column: "EvidenceId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Guests_UserId",
@@ -398,7 +402,7 @@ namespace BeMyGuest.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Gatherings");
+                name: "Gathering");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -413,7 +417,7 @@ namespace BeMyGuest.Migrations
                 name: "Hosts");
 
             migrationBuilder.DropTable(
-                name: "CovidDataSet");
+                name: "Evidences");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

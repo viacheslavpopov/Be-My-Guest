@@ -13,15 +13,12 @@
 @* <h3>Questions</h3>
     @for (int i = 1; i < @Model.Count; ++i)
     {
-    <li>@Html.ActionLink($"{Model[i].Question}", "Edit", new { id = Model[i].CovidDataId } )</li>
+    <li>@Html.ActionLink($"{Model[i].Question}", "Edit", new { id = Model[i].EvidenceId } )</li>
     } *@
 
-@foreach (CovidData covidData in Model)
+@foreach (Evidence evidence in Model)
 {
-    <li>@Html.ActionLink($"{covidData.Question}", "Edit", new { id = covidData.EvidenceId } )</li>
+    <li>@Html.ActionLink($"{evidence.Question}", "Edit", new { id = evidence.EvidenceId } )</li>
 }
-
-
-
 
 <h3> @Html.ActionLink("Back to Home", "Index", "Home")</h3>

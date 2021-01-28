@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace BeMyGuestMVC.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    // [Authorize(Roles = "Admin")]
     [Authorize(Roles = "Guest")]
     [Authorize(Roles = "Host")]
     public class GuestsController : Controller

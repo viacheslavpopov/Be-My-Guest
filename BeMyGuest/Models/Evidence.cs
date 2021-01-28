@@ -6,9 +6,9 @@ using System;
 
 namespace BeMyGuest.Models
 {
-    public class CovidData
+    public class Evidence
     {
-        // public CovidData()
+        // public Evidence()
         // {
         //     this.JoinEntries = new HashSet<Gathering>();
         // }
@@ -26,34 +26,34 @@ namespace BeMyGuest.Models
         public virtual ApplicationUser User { get; set; }
         public virtual ICollection<Guest> Guests { get; set; }
 
-        public static List<CovidData> GetCovidData()
+        public static List<Evidence> GetEvidence()
         {
             var apiCallTask = EvidencesApiHelper.GetAll();
             var result = apiCallTask.Result;
 
             JArray jsonResponse = JsonConvert.DeserializeObject<JArray>(result);
-            List<CovidData> covidList = JsonConvert.DeserializeObject<List<CovidData>>(jsonResponse.ToString());
+            List<Evidence> covidList = JsonConvert.DeserializeObject<List<Evidence>>(jsonResponse.ToString());
 
             return covidList;
         }
-        public static CovidData GetDetails(int id)
+        public static Evidence GetDetails(int id)
         {
             var apiCallTask = EvidencesApiHelper.Get(id);
             var result = apiCallTask.Result;
             JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
-            CovidData CovidData = JsonConvert.DeserializeObject<CovidData>(jsonResponse.ToString());
+            Evidence Evidence = JsonConvert.DeserializeObject<Evidence>(jsonResponse.ToString());
 
-            return CovidData;
+            return Evidence;
         }
-        public static void Post(CovidData covidData)
+        public static void Post(Evidence evidence)
         {
-            string jsonCovidData = JsonConvert.SerializeObject(covidData);
-            var apiCallTask = EvidencesApiHelper.Post(jsonCovidData);
+            string jsonEvidence = JsonConvert.SerializeObject(evidence);
+            var apiCallTask = EvidencesApiHelper.Post(jsonEvidence);
         }
-        public static void Put(CovidData covidData)
+        public static void Put(Evidence evidence)
         {
-            string jsonCovidData = JsonConvert.SerializeObject(covidData);
-            var apiCallTask = EvidencesApiHelper.Put(covidData.EvidenceId, jsonCovidData);
+            string jsonEvidence = JsonConvert.SerializeObject(evidence);
+            var apiCallTask = EvidencesApiHelper.Put(evidence.EvidenceId, jsonEvidence);
         }
         public static void Delete(int id)
         {
