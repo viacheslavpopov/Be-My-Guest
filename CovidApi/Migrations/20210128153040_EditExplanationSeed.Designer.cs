@@ -3,14 +3,16 @@ using System;
 using CovidApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CovidApi.Migrations
 {
     [DbContext(typeof(CovidApiContext))]
-    partial class CovidApiContextModelSnapshot : ModelSnapshot
+    [Migration("20210128153040_EditExplanationSeed")]
+    partial class EditExplanationSeed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -116,7 +118,7 @@ namespace CovidApi.Migrations
                             DiagnosisId = 1,
                             Explanation = " ",
                             Fever = false,
-                            Question = "Do you have any of the following symptoms? 1. Fever 2. Cough 3. Shortness of Breathe",
+                            Question = "Do you have any of the following symptoms?",
                             SexAnswer = "false",
                             Sob = false,
                             YesNo = false
@@ -129,7 +131,7 @@ namespace CovidApi.Migrations
                             DiagnosisId = 1,
                             Explanation = " ",
                             Fever = false,
-                            Question = "Do you have any other symptoms not listed? List all that apply",
+                            Question = "Do you have any other symptoms? List all that apply",
                             SexAnswer = "false",
                             Sob = false,
                             YesNo = false

@@ -26,7 +26,7 @@ namespace CovidApi.Models
                         Cough = false,
                         Sob = false,
                         YesNo = false,
-                        Explanation = "false",
+                        Explanation = " ",
                         DiagnosisId = 1
                     }, new Evidence
                     {
@@ -38,7 +38,7 @@ namespace CovidApi.Models
                         Cough = false,
                         Sob = false,
                         YesNo = false,
-                        Explanation = "false",
+                        Explanation = " ",
                         DiagnosisId = 1
                     },
                      new Evidence
@@ -51,33 +51,33 @@ namespace CovidApi.Models
                          Cough = false,
                          Sob = false,
                          YesNo = false,
-                         Explanation = "false",
+                         Explanation = " ",
                          DiagnosisId = 1
                      },
                       new Evidence
                       {
                           EvidenceId = 4,
-                          Question = "Do you have any of the following symptoms?",
+                          Question = "Do you have any of the following symptoms? 1. Fever 2. Cough 3. Shortness of Breathe",
                           SexAnswer = "false",
                           AgeAnswer = 1,
                           Fever = false,
                           Cough = false,
                           Sob = false,
                           YesNo = false,
-                          Explanation = "false",
+                          Explanation = " ",
                           DiagnosisId = 1
                       },
                       new Evidence
                       {
                           EvidenceId = 5,
-                          Question = "Do you have any other symptoms? List all that apply",
+                          Question = "Do you have any other symptoms not listed? List all that apply",
                           SexAnswer = "false",
                           AgeAnswer = 1,
                           Fever = false,
                           Cough = false,
                           Sob = false,
                           YesNo = false,
-                          Explanation = "false",
+                          Explanation = " ",
                           DiagnosisId = 1
                       },
                        new Evidence
@@ -90,7 +90,7 @@ namespace CovidApi.Models
                            Cough = false,
                            Sob = false,
                            YesNo = false,
-                           Explanation = "false",
+                           Explanation = " ",
                            DiagnosisId = 1
                        },
                         new Evidence
@@ -103,7 +103,7 @@ namespace CovidApi.Models
                             Cough = false,
                             Sob = false,
                             YesNo = false,
-                            Explanation = "false",
+                            Explanation = " ",
                             DiagnosisId = 1
                         },
                           new Evidence
@@ -116,7 +116,7 @@ namespace CovidApi.Models
                               Cough = false,
                               Sob = false,
                               YesNo = false,
-                              Explanation = "false",
+                              Explanation = " ",
                               DiagnosisId = 1
                           }
                 );

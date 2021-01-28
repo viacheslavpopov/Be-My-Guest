@@ -37,11 +37,17 @@ namespace BeMyGuest.Controllers
         }
 
         [HttpPost]
-        public IActionResult Details(int id, CovidData covid)
+        public IActionResult Edit(CovidData covid)
         {
-            covid.EvidenceId = id;
             CovidData.Put(covid);
-            return RedirectToAction("Index");
+            if (covid.EvidenceId == 8)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Edit", new { id = covid.EvidenceId + 1 });
+            }
         }
 
         public IActionResult Delete(int id)
