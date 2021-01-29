@@ -1,0 +1,89 @@
+@{
+    Layout = "_Layout";
+}
+
+@model BeMyGuest.Models.Guest
+
+<h2 style="text-align:center">Guest Details</h2>
+<hr />
+
+<div class="card" style="width: 48rem;">
+    <div class="card-body">
+        <h3 class="card-title">@Html.DisplayNameFor(model => model.Name):</h3>
+        <h4>@Html.DisplayFor(model => model.Name)</h4>
+
+        <ul class="card-text" style="list-style: none;">
+            <li class="form-group row">@Html.DisplayNameFor(model => model.Pronouns): @Html.DisplayFor(model => model.Pronouns)</li>
+            <li class="form-group row">@Html.DisplayNameFor(model => model.Email): @Html.DisplayFor(model => model.Email)</li>
+            <li class="form-group row">@Html.DisplayNameFor(model => model.Vaccinated): @Html.DisplayFor(model => model.Vaccinated)</li>
+            <li class="form-group row">@Html.DisplayNameFor(model => model.HighRisk): @Html.DisplayFor(model => model.HighRisk)</li>
+            <li class="form-group row">@Html.DisplayNameFor(model => model.RecentTravel): @Html.DisplayFor(model => model.RecentTravel)</li>
+            <li class="form-group row">@Html.DisplayNameFor(model => model.CompletedQuestionnaire): @Html.DisplayFor(model => model.CompletedQuestionnaire)</li>
+            <li class="form-group row">@Html.DisplayNameFor(model => model.MedicalMobilityNeeds): @Html.DisplayFor(model => model.MedicalMobilityNeeds)</li>
+            <li class="form-group row">@Html.DisplayNameFor(model => model.MedicalConditions): @Html.DisplayFor(model => model.MedicalConditions)</li>
+            <li class="form-group row">@Html.DisplayNameFor(model => model.ServiceAnimal): @Html.DisplayFor(model => model.ServiceAnimal)</li>
+            <li class="form-group row">@Html.DisplayNameFor(model => model.DietaryRestrictions): @Html.DisplayFor(model => model.DietaryRestrictions)</li>
+            <li class="form-group row">@Html.DisplayNameFor(model => model.Allergies): @Html.DisplayFor(model => model.Allergies)</li>
+            <li class="form-group row">@Html.DisplayNameFor(model => model.PreferredLanguage): @Html.DisplayFor(model => model.PreferredLanguage)</li>
+            <li class="form-group row">@Html.DisplayNameFor(model => model.AlcoholFree): @Html.DisplayFor(model => model.AlcoholFree)</li>
+            <li class="form-group row">@Html.DisplayNameFor(model => model.NotAHugger): @Html.DisplayFor(model => model.NotAHugger)</li>
+            <li class="form-group row">@Html.DisplayNameFor(model => model.PlusOne): @Html.DisplayFor(model => model.PlusOne)</li>
+            <li class="form-group row">@Html.DisplayNameFor(model => model.SmallChildren): @Html.DisplayFor(model => model.SmallChildren)</li>
+        </ul>
+            <h3>Send Invite</h3>
+            <h3><a href="mailto:@Model.Email?subject=You're Invited!&body=You have been invited to a gathering by (name here)! Here are the event details: (event details such as date, time, place, etc.). Please click the link below and use this code 'RFDJ123' to RSVP and answer the 'social cues' needed to make this gathering awesome. If you haven't created an account with BeMyGuest, you will need to create one and register as a guest." class="btn btn-outline-info">Send Invite</a></h3>
+    </div>
+</div>
+<br>
+<br>
+
+@* @if(@Model.CovidDataSet.Count == 0)
+{
+    <p>This guest has not filled out their questionnaire yet.</p>
+<h3>@Html.DisplayNameFor(model => model.Name):</h3>
+<h4>@Html.DisplayFor(model => model.Name)</h4>
+<h5>Pronouns: They/Them</h5>
+<h5>Vaccinated: Yes</h5>
+<h5>Recent Travel: No</h5>
+<h5>COVID Questionnaire: Completed</h5>
+<h5>Medical Mobility Needs: None</h5>
+<h5>Medical Conditions: Epilepsy</h5>
+<h5>Service Animal: Yes</h5>
+<h6>Instructions: Please do not pet dog</h6>
+<h5>Dietary Restrictions: Vegan</h5>
+<h5>Allergies: Shellfish</h5>
+<h5>Preferred Lanuage: Russian</h5>
+<h5>Alcohol-Friendly</h5>
+<h5>Physical Contact: Not a hugger</h5>
+<h5>Plus 1: No</h5>
+<h5>Small Children in Tow: No</h5>
+
+
+
+@* @if(@Model.Hosts.Count == 0)
+    {
+    <p>This event does not have any guests yet.</p>
+    <hr />
+    }
+    else
+    {
+    <h3>Guest List:</h3>
+    <ul>
+        @foreach(var join in Model.Host)
+        {
+            <div class="form-group">
+                <li><h4>@join.Event.EventName</h4></li>
+            </div>
+            @using (Html.BeginForm("DeleteJoin", "Events"))
+            {
+                <div class="form-group">
+                    @Html.Hidden("joinId", @join.GatheringId)
+                    <input type="submit" value="Remove From Event" class="btn btn-default"/>
+                </div>
+            }
+        }
+    </ul>
+} *@
+@* @if (User.Identity.IsAuthenticated && ViewBag.IsCurrentUser)
+{ *@
+<h3>@Html.ActionLink("Edit Guest", "Edit", new { id = Model.GuestId }, new {@class="btn btn-outline-info"}) || @Html.ActionLink("Add a Guest", "AddGuest", new { id = Model.GuestId }, new {@class ="btn btn-outline-info"}) || @Html.ActionLink("Delete Guest", "Delete", new { id = Model.GuestId }, new {@class ="btn btn-outline-info"}) || @Html.ActionLink("Guests Home", "Index", new {@class ="btn btn-outline-info"})</h3>

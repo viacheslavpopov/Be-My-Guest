@@ -1,0 +1,38 @@
+@{
+    Layout = "_Layout";
+}
+
+@using BeMyGuest.ViewModels
+@model LoginViewModel
+
+<h1>Log In with your Account</h1>
+<hr>
+
+<div class="card mx-auto" style="width: 36rem;">
+    <div class="card-body">
+        <h5 class="card-title text-center">Log In</h5>
+        <p class="card-text text-center text-muted">
+            @using (Html.BeginForm())
+            {
+                <div class="form-group row">
+                    @Html.Hidden("ViewBag.userId")
+                    @Html.LabelFor(account => account.Email, new { @class="col-sm-3 col-form-label" })
+                    @Html.TextBoxFor(account => account.Email, new { @class="col-sm-8", @placeholder="youremail@example.com"})
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(account => account.Password, new { @class="col-sm-3 col-form-label" })
+                    @Html.PasswordFor(account => account.Password, new { @class="col-sm-8", @placeholder="Your super secure password"})
+                </div>
+                <div class="card-text text-center text-muted">
+                    <input type="submit" value="Log In" class="btn btn-outline-info">
+                </div>
+                @if (ViewBag.Error != null)
+                {
+                    <h3 class="errorMessage">@ViewBag.Error, please try again.</h3>
+                }
+
+            }
+        </p>
+    </div>
+</div>

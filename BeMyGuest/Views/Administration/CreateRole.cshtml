@@ -1,0 +1,18 @@
+@{
+    Layout = "_Layout";
+}
+
+@using BeMyGuest.ViewModels
+@model CreateRoleViewModel
+
+<h1>Create New Role</h1>
+
+@Html.ValidationMessage("CustomError")
+<hr>
+@using (Html.BeginForm("CreateRole", "Administration", FormMethod.Post))
+{
+    @Html.LabelFor(user => user.RoleName)
+    @Html.TextBoxFor(user => user.RoleName)
+
+    <input type="submit" value="Create Role" class="btn btn-info">
+}

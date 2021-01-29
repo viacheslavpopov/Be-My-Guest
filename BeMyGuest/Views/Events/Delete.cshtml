@@ -1,0 +1,28 @@
+@{
+    Layout = "_Layout";
+}
+
+@model BeMyGuest.Models.Event
+
+<h2>Delete Event</h2>
+<hr />
+<h4>Are you sure you want to delete this event?</h4>
+<div class="card mx-auto" style="width: 36rem;">
+    <div class="card-body">
+        <div class="form-group row">
+            @Html.DisplayFor(model => model.EventTitle):
+        </div>
+        <div class="form-group row">
+            <p>@Html.DisplayFor(model => model.EventTitle)</p>
+        </div>
+        <div class="form-group row">
+            @using (Html.BeginForm())
+            {
+                <input type="submit" value="Delete" class="btn btn-danger" />
+            }
+        </div>
+        </div>
+    </div>
+</div>
+
+<h3>@Html.ActionLink("Back to Event Details", "Details", new {id = Model.EventId}) || @Html.ActionLink("Back to Events", "Index")</h3>

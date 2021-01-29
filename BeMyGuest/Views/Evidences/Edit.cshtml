@@ -1,0 +1,14 @@
+@{
+    Layout = "_Layout";
+}
+
+@model BeMyGuest.Models.Evidence
+
+<h1>@Model.Question</h1>
+<hr>
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.EvidenceId)
+    @Html.TextBoxFor(model => model.Explanation, new { @class = "form-control" })
+    <input type="submit" value="Submit" class="btn btn-primary">
+}

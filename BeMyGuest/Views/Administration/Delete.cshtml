@@ -1,0 +1,16 @@
+@{
+    Layout = "_Layout";
+}
+
+@using BeMyGuest.Models
+
+<h1>Are you sure you want to delete this role?</h1>
+
+
+@using (Html.BeginForm())
+{
+    <input type="submit" value="Delete" class="btn btn-warning">
+}
+
+<hr>
+<p>@Html.ActionLink("Back To Role List", "Index")</p>

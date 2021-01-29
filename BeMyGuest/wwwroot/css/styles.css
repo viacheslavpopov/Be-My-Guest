@@ -1,0 +1,126 @@
+@import url("https://fonts.googleapis.com/css2?family=Prata&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+/*Calling the imported google fonts above*/
+/* font-family: 'Prata', serif;
+font-family: 'Montserrat', sans-serif; */
+/*-------------------*/
+
+/*Splash Page Header*/
+#beMyGuest {
+  color: #3b3c40;
+  text-align: center;
+  letter-spacing: 10px;
+  /* font-style: italic; */
+  font-family: "Prata", serif;
+  text-shadow: 5px 5px 10px #bfbeba;
+  font-size: 80pt;
+}
+
+#strikethrough {
+  text-decoration: line-through;
+}
+
+#byline {
+  font-style: italic;
+  text-shadow: 5px 5px 10px #bfbeba;
+}
+
+/*Account Pages*/
+.errorMessage {
+  color: darkred;
+  font-style: bold;
+}
+
+/*Regular pages styling*/
+* {
+  font-family: "Montserrat", sans-serif;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+body {
+  /* background-color: #bfac95; */
+  color: #3b3c40;
+  background-repeat: no-repeat;
+  background: linear-gradient(#bfbeba, #fef0e0);
+  /* background-size: cover; */
+  /* background-image: url("../img/BeMyGuest_Logo.png"); */
+  background-position: center;
+  background-attachment: fixed;
+}
+
+h1 {
+  color: #3b3c40;
+  text-align: center;
+  letter-spacing: 10px;
+  /* font-style: italic; */
+  font-family: "Prata", serif;
+  text-shadow: 5px 5px 10px #bfbeba;
+}
+
+h2 {
+  font-family: "Montserrat", sans-serif;
+  color: #3b3c40;
+  text-align: center;
+}
+
+h3 {
+  color: #3b3c40;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
+  height: auto;
+  filter: drop-shadow(0px 10px 3px #bfbeba);
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+/* #center {
+    text-align: center;
+} */
+
+/*Nav Bar*/
+.navbar-custom {
+  background-color: #34594f;
+}
+
+/* changes the brand and text color */
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text {
+  color: #f2d0cc;
+}
+
+/* changes the link color */
+.navbar-custom .navbar-nav .nav-link {
+  color: #f2d0cc;
+}
+
+/* changes the color of active or hovered links */
+.navbar-custom .nav-item.active .nav-link,
+.navbar-custom .nav-item:hover .nav-link {
+  color: #bfbeba;
+  letter-spacing: 2px;
+}
+
+/*Cards*/
+.card {
+  margin: 0 auto;
+  float: none;
+  margin-bottom: 10px;
+}
+/* .completed {
+  color: greenyellow;
+} */
+.covidResults{
+  text-align: left;
+}

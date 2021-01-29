@@ -1,0 +1,34 @@
+@{
+    Layout = "_Layout";
+}
+
+@using BeMyGuest.Models
+@model List<BeMyGuest.Models.Event>
+
+<h2>Your Events</h2>
+<hr>
+@if (Model.Any())
+{
+    <ul style="list-style: none;">
+        @foreach(Event myEvent in Model)
+        {
+            <div class="card" style="width: 36rem;">
+                <div class="card-body">
+                    <p class="card-title">@Html.ActionLink($"{myEvent.EventTitle}", "Details", new { id = myEvent.EventId }, new { type="date" })</p>
+                    <li class="card-text">Event Date: @myEvent.EventDate</li>
+                    <li class="card-text">Start Time: @myEvent.StartTime</li>
+                    <li class="card-text">End Time: @myEvent.EndTime</li>
+                </div>
+            </div>
+        }
+    </ul>
+}
+else
+{
+    <div class="card" style="width: 36rem;">
+        <div class="card-body">
+            <h3>There are no events added yet.</h3>
+        </div>
+    </div>
+}
+<h3>@Html.ActionLink("Add a New Event", "Create") || @Html.ActionLink("Back to Home", "Index", "Home")</h3>

@@ -1,0 +1,33 @@
+@model List<AssignRoleViewModel>
+@using BeMyGuest.ViewModels
+
+@{
+    var userId = ViewBag.userId;
+    Layout = "_Layout";
+}
+
+<form method="post">
+    <div class="card" style="width: 36rem;">
+        <div class="card-header">
+            <h2>Who are you?</h2>
+        </div>
+        <div class="card-body justify-content">
+            <div class="form-check">
+                @for (int i = 0; i < 2; i++)
+                {
+                    <div class="form-check">
+
+                        @Html.HiddenFor(model => model[i].RoleId)
+                        @Html.HiddenFor(model => model[i].RoleName)
+                        @Html.CheckBoxFor(model => model[i].IsSelected)
+                        @Html.DisplayFor(model => model[i].RoleName)
+                    </div>
+                }
+            </div>
+                @* @* <div class="card-footer"> *@
+                <input type="submit" value="Confirm Role" class="btn btn-outline-info"/>
+                @* <a asp-action="EditRole" asp-route-id="@roleId" class="btn btn-primary" style="width:auto">Cancel</a> *@
+                <p>@Html.ActionLink("Cancel", "Login", "Account", new { @class = "btn btn-outline-info"})</p>
+        </div>
+    </div>
+</form>

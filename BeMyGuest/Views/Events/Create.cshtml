@@ -1,0 +1,55 @@
+@{
+    Layout = "_Layout";
+}
+
+@model BeMyGuest.Models.Event
+
+<h2>Add Event</h2>
+<hr>
+<div class="card mx-auto" style="width: 48rem;">
+    <div class="card-body">
+        @using (Html.BeginForm())
+        {
+            <div class="form-group row">
+                <p class ="col-sm-3">@Html.DisplayNameFor(model => model.EventTitle)</p>
+                <p class="col-sm-9">@Html.TextBoxFor(model => model.EventTitle)</p>
+            </div>
+            <div class="form-group row">
+                <p class ="col-sm-3">@Html.DisplayNameFor(model => model.EventDate)</p>
+                <p class="col-sm-9">@Html.TextBoxFor(model => model.EventDate, new {@type="date"})</p>
+            </div>
+            <div class="form-group row">
+                <p class ="col-sm-3">@Html.DisplayNameFor(model => model.Venue)</p>
+                <p class="col-sm-9">@Html.TextBoxFor(model => model.Venue)</p>
+            </div>
+            <div class="form-group row">
+                <p class ="col-sm-3">@Html.DisplayNameFor(model => model.VenueAddress)</p>
+                <p class="col-sm-9">@Html.TextBoxFor(model => model.VenueAddress)</p>
+            </div>
+            <div class="form-group row">
+                <p class ="col-sm-3">@Html.DisplayNameFor(model => model.VenueRequirements)</p>
+                <p class="col-sm-9">@Html.TextBoxFor(model => model.VenueRequirements)</p>
+            </div>
+            <div class="form-group row">
+                <p class ="col-sm-3">@Html.DisplayNameFor(model => model.StartTime)</p>
+                <p class="col-sm-9">@Html.TextBoxFor(model => model.StartTime, new {@type="time"})</p>
+            </div>
+            <div class="form-group row">
+                <p class ="col-sm-3">@Html.DisplayNameFor(model => model.EndTime)</p>
+                <p class="col-sm-9">@Html.TextBoxFor(model => model.EndTime, new {@type="time"})</p>
+            </div>
+            <div class="form-group row">
+                <p class ="col-sm-3">@Html.DisplayNameFor(model => model.QuarantineRequirements)</p>
+                <p class="col-sm-9">@Html.TextBoxFor(model => model.QuarantineRequirements)</p>
+            </div>
+            <div class="form-group row">
+                <p class ="col-sm-3">@Html.DisplayNameFor(model => model.MaskRequirements)</p>
+                <p class="col-sm-9">@Html.CheckBoxFor(model => model.MaskRequirements)</p>
+            </div>
+
+            <div class="form-group row">
+                <input type="submit" value="Add Event" class="btn btn-outline-info" />
+            </div>
+        }
+    </div>
+</div>

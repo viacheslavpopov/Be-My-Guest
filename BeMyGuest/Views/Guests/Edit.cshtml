@@ -1,0 +1,98 @@
+@{
+    Layout = "_Layout";
+}
+
+@model BeMyGuest.Models.Guest
+
+<h2>Social Q's Questionnaire: @Html.DisplayFor(model => model.Name)</h2>
+<hr />
+
+@using (Html.BeginForm())
+{
+    <div class="card mx-auto" style="width: 48rem;">
+        <div class="card-body">
+            @Html.HiddenFor(model => model.GuestId)
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Name, new { @class="col-sm-3 col-form-label" })
+                @Html.TextBoxFor(model => model.Name, new { @class="col-sm-8 col-form-label" })
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Email, new { @class="col-sm-3 col-form-label" })
+                @Html.TextBoxFor(model => model.Email, new { @class="col-sm-8 col-form-label", @placeholder ="janey@example.com" })
+            </div>
+    @* <div class="form-group">
+        @Html.LabelFor(model => model.Name)
+        @Html.TextBoxFor(model => model.Name)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email)
+        @Html.TextBoxFor(model => model.Email)
+    </div> *@
+    <div class="form-group row">
+        @Html.Label("What are your pronouns?")
+        @Html.TextBoxFor(model => model.Pronouns)
+    </div>
+    <div class="form-group row">
+        @Html.Label("Have you been vaccinated?")
+        @Html.TextBoxFor(model => model.Vaccinated)
+    </div>
+    <div class="form-group row">
+        @Html.Label("Are you apart of a high-risk group?")
+        @Html.TextBoxFor(model => model.HighRisk)
+    </div>
+    <div class="form-group row">
+        @Html.Label("Have you traveled outside of your state in the past two weeks?")
+        @Html.TextBoxFor(model => model.RecentTravel)
+    </div>
+    <div class="form-group row">
+        @Html.Label("Have you completed the COVID Questionnaire?")
+        @Html.TextBoxFor(model => model.CompletedQuestionnaire)
+    </div>
+    <div class="form-group row">
+        @Html.Label("Do you have any medical mobility needs?")
+        @Html.TextBoxFor(model => model.MedicalMobilityNeeds)
+    </div>
+    <div class="form-group row">
+        @Html.Label("Any medical conditions you would like other to be aware of?")
+        @Html.TextBoxFor(model => model.MedicalConditions)
+    </div>
+    <div class="form-group row">
+        @Html.Label("Do you require the aid of a service animal?")
+        @Html.TextBoxFor(model => model.ServiceAnimal)
+    </div>
+    <div class="form-group row">
+        @Html.Label("Do you have any dietary restrictions?")
+        @Html.TextBoxFor(model => model.DietaryRestrictions)
+    </div>
+    <div class="form-group row">
+        @Html.Label("Any food allergies?")
+        @Html.TextBoxFor(model => model.Allergies)
+    </div>
+    <div class="form-group row">
+        @Html.Label("What is your preferred language?")
+        @Html.TextBoxFor(model => model.PreferredLanguage)
+    </div>
+    <div class="form-group row">
+        @Html.Label("Do you imbibe or are you alcohol free?")
+        @Html.TextBoxFor(model => model.AlcoholFree)
+    </div>
+    <div class="form-group row">
+        @Html.Label("Do you accept hugs?")
+        @Html.TextBoxFor(model => model.NotAHugger)
+    </div>
+    <div class="form-group row">
+        @Html.Label("Plus one?")
+        @Html.TextBoxFor(model => model.PlusOne)
+    </div>
+    <div class="form-group row">
+        @Html.Label("Any small children attending with you?")
+        @Html.TextBoxFor(model => model.SmallChildren)
+    </div>
+        <div class="form-group row">
+            <input type="submit" value="Save" class="btn btn-outline-info">
+        </div>
+    </div>
+    </div>
+}
+
+<h3>@Html.ActionLink("Show all guests", "Index", "Guests")</h3>

@@ -1,0 +1,26 @@
+@{
+    Layout = "_Layout";
+}
+
+@model BeMyGuest.Models.Event
+
+<h2>Add a Guest</h2>
+<hr>
+<h4>Add Guest To: @Html.DisplayFor(model => model.EventTitle)</h4>
+
+<div class="card mx-auto" style="width: 36rem;">
+    <div class="card-body">
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(model => model.EventId)
+
+        <div class="form-group row">
+            <h3>Guest to Invite: @Html.DropDownList("GuestId")</h3>
+        </div>
+
+        <div class="form-group row">
+            <input type="submit" value="Save" class="btn btn-outline-info" />
+        </div>
+    }
+    </div>
+</div>

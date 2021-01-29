@@ -1,0 +1,32 @@
+@{
+    Layout = "_Layout";
+}
+<h2>Data Result Details</h2>
+<hr>
+
+<div class="card" style="width: 48rem;">
+    <div class="card-body">
+        <h3 class="card-title">Guest Id: 1</h3>
+        <ol>
+            <ol>
+                <ul>
+                    <li>Sex: Female</li>
+                    <li>Age: 30</li>
+                    <li>Completed COVID Questionnaire: <span style="color:greenyellow"><strong>COMPLETED</strong></span></li>
+                    <li>Symptoms: <span style="color: red">NONE</span> </li>
+                    <li>Vaccine: <span style="color: red">NO</span> </li>
+                    <li>Recent Travel: No</li>
+                    <li>Exposure Level: Minimal</li>
+                    <ul>
+                        <li style="list-style: none;"> - Explanation: "I never leave my house".</li>
+                    </ul>
+                </ul>
+                @* @foreach (var join in Model.CovidData)
+                    {
+                    <li>@join.CovidData.Diagnosis</li>
+                    } *@
+            </ol>
+            <br>
+        </ol>
+        </div>
+</div>

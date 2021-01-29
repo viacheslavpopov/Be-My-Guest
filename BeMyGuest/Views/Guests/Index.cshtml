@@ -1,0 +1,33 @@
+@{
+    Layout = "_Layout";
+}
+
+@using BeMyGuest.Models
+@model IEnumerable<BeMyGuest.Models.Guest>;
+
+<h2>Guest List</h2>
+<hr>
+@if (Model.Any())
+{
+    <ul style="list-style: none;">
+        @foreach(Guest guest in Model)
+        {
+            <div class="card" style="width: 36rem;">
+                <div class="card-body">
+                    <li>@Html.ActionLink($"{guest.Name}", "Details", new { id = guest.GuestId })</li>
+                    <li>High Risk Attendee: @guest.HighRisk</li>
+                    <li>Has Completed Questionnaire: @guest.CompletedQuestionnaire</li>
+                </div>
+            </div>
+        }
+    </ul>
+}
+else
+{
+    <div class="card" style="width: 36rem;">
+        <div class="card-body">
+            <h3>There are no guests added yet.</h3>
+        </div>
+    </div>
+}
+<h3>@Html.ActionLink("Add a New Guest", "Create") || @Html.ActionLink("Back to Home", "Index", "Home")</h3>

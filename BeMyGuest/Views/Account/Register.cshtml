@@ -1,0 +1,40 @@
+@{
+    Layout = "_Layout";
+}
+
+@using BeMyGuest.ViewModels
+@model RegisterViewModel
+
+<h1>Register New User</h1>
+<hr>
+
+<div class="card mx-auto" style="width: 36rem;">
+    <div class="card-body">
+        <h5 class="card-title text-center">Log In</h5>
+        <p class="card-text text-center text-muted">
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+            {
+            <div class="form-group row">
+                @Html.LabelFor(user => user.Email, new { @class="col-sm-3 col-form-label" })
+                @Html.TextBoxFor(user => user.Email, new { @class="col-sm-8", @placeholder="youremail@example.com"})
+            </div>
+
+            <div class="form-group row">
+                @Html.LabelFor(user => user.Password, new { @class="col-sm-3 col-form-label" })
+                @Html.PasswordFor(user => user.Password, new { @class="col-sm-8", @placeholder="A super secure password"})
+            </div>
+
+            <div class="form-group row">
+                @Html.LabelFor(user => user.ConfirmPassword, new { @class="col-sm-3 col-form-label" })
+                @Html.PasswordFor(user => user.ConfirmPassword, new { @class="col-sm-8", @placeholder="Confirm password"})
+            </div>
+            <div class="card-text text-center text-muted">
+                <input type="submit" value="Register" class="btn btn-outline-info">
+            </div>
+                @if(ViewBag.Error != null)
+                {
+                    <h3 class="errorMessage">@ViewBag.Error, Please try again.</h3>
+                }
+            }
+    </div>
+</div>

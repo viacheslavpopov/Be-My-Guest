@@ -1,0 +1,61 @@
+@{
+    Layout = "_Layout";
+}
+
+@model BeMyGuest.Models.Event
+@using System.Security.Claims
+
+<h2>Event Details</h2>
+<hr>
+<div class="card" style="width: 36rem;">
+    <div class="card-body">
+        <h3 class="card-title">Event Title:</h3>
+        <h4>@Html.DisplayFor(model => model.EventTitle)</h4>
+
+        <ul class="card-text" style="list-style:none;">
+            @* <li class="form-group row">@Html.DisplayNameFor(model => model.EventDate): @Html.DisplayFor(model => model.EventDate, new {@type="date"})</li> *@
+            <li class="form-group row">Event Date:</li>
+            <li class="form-group row">@Html.DisplayNameFor(model => model.Venue): @Html.DisplayFor(model => model.Venue)</li>
+            <li class="form-group row">@Html.DisplayNameFor(model => model.VenueAddress): @Html.DisplayFor(model => model.VenueAddress)</li>
+            <li class="form-group row">@Html.DisplayNameFor(model => model.VenueRequirements): @Html.DisplayFor(model => model.VenueRequirements)</li>
+            <li class="form-group row">@Html.DisplayNameFor(model => model.StartTime): @Html.DisplayFor(model => model.StartTime, new {@type="time"})</li>
+            <li class="form-group row">@Html.DisplayNameFor(model => model.EndTime): @Html.DisplayFor(model => model.EndTime, new {@type="time"})</li>
+            <li class="form-group row">@Html.DisplayNameFor(model => model.QuarantineRequirements): @Html.DisplayFor(model => model.QuarantineRequirements)</li>
+            <li class="form-group row">@Html.DisplayNameFor(model => model.MaskRequirements): @Html.DisplayFor(model => model.MaskRequirements)</li>
+        </ul>
+            @if (User.Identity.IsAuthenticated && ViewBag.IsCurrentUser)
+            {
+                <p>@Html.ActionLink("Edit Event", "Edit", new { id = Model.EventId }, new {@class="btn btn-outline-info"})</p>
+                <p>@Html.ActionLink("Add a Guest", "AddGuest", new { id = Model.EventId }, new {@class ="btn btn-outline-info"})</p>
+                <p>@Html.ActionLink("Delete Event", "Delete", new { id = Model.EventId }, new {@class ="btn btn-outline-info"})</p>
+                <p>@Html.ActionLink("View Guest Covid Data", "Index", "GuestCovidInfos", new {@class ="btn btn-outline-info"})</p>
+            }
+            else
+            {
+                <h3>@Html.ActionLink("Events Home", "Index")</h3>
+            }
+    </div>
+</div>
+
+@* @if(@Model.Guests.Count == 0)
+{
+    <h4>There are no guests invited to this event yet</h4>
+}
+else
+{
+    <h4>Guests:</h4>
+    <ul>
+        @foreach(var join in Model.Guests)
+        {
+            <li>@join.Guest.GuestName</li>
+            @if(User.Identity.IsAuthenticated && ViewBag.IsCurrentUser)
+            {
+                @using (Html.BeginForm("DeleteGuest", "Flavors"))
+                {
+                    @Html.Hidden("joinId", @join.GatheringId)
+                    <input type="submit" value="Delete" class="btn btn-default"/>
+                }
+            }
+        }
+    </ul>
+} *@

@@ -1,0 +1,31 @@
+@{
+    Layout = "_Layout";
+}
+
+@model BeMyGuest.Models.Host
+
+<h2>Edit</h2>
+<hr />
+<h4>Edit this Host: @Html.DisplayFor(model => model.HostName)</h4>
+
+@using (Html.BeginForm())
+{
+    <div class="card" style="width: 48rem;">
+        <div class="card-body">
+            @Html.HiddenFor(model => model.HostId)
+            <div class="form-group row">
+                @Html.LabelFor(model => model.HostName, new { @class="col-sm-3 col-form-label" })
+                @Html.EditorFor(model => model.HostName, new { @class="col-sm-8 col-form-label" })
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.HostEmail, new { @class="col-sm-3 col-form-label" })
+                @Html.EditorFor(model => model.HostEmail, new { @class="col-sm-8 col-form-label" })
+            </div>
+            <div class="form-group row">
+                <input type="submit" value="Save" class="btn btn-outline-info">
+            </div>
+        </div>
+    </div>
+}
+
+<h3>@Html.ActionLink("Hosts Home", "Index", "Hosts")</h3>

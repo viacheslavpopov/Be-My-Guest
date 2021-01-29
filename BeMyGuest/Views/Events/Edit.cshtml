@@ -1,0 +1,59 @@
+@{
+    Layout = "_Layout";
+}
+
+@model BeMyGuest.Models.Event
+
+<h2>Edit</h2>
+<hr>
+<h3>Editing: @Html.DisplayFor(model => model.EventTitle)</h3>
+
+<div class="card mx-auto" style="width: 48rem;">
+    <div class="card-body">
+        @using (Html.BeginForm())
+        {
+            @Html.HiddenFor(model => model.EventId)
+
+            <div class="form-group row">
+                <p class ="col-sm-3">@Html.DisplayNameFor(model => model.EventTitle)</p>
+                <p class="col-sm-9">@Html.EditorFor(model => model.EventTitle)</p>
+            </div>
+            <div class="form-group row">
+                <p class ="col-sm-3">@Html.DisplayNameFor(model => model.EventDate)</p>
+                <p class="col-sm-9">@Html.TextBoxFor(model => model.EventDate, new {@type="date"})</p>
+            </div>
+            <div class="form-group row">
+                <p class ="col-sm-3">@Html.DisplayNameFor(model => model.Venue)</p>
+                <p class="col-sm-9">@Html.EditorFor(model => model.Venue)</p>
+            </div>
+            <div class="form-group row">
+                <p class ="col-sm-3">@Html.DisplayNameFor(model => model.VenueAddress)</p>
+                <p class="col-sm-9">@Html.EditorFor(model => model.VenueAddress)</p>
+            </div>
+            <div class="form-group row">
+                <p class ="col-sm-3">@Html.DisplayNameFor(model => model.VenueRequirements)</p>
+                <p class="col-sm-9">@Html.EditorFor(model => model.VenueRequirements)</p>
+            </div>
+            <div class="form-group row">
+                <p class ="col-sm-3">@Html.DisplayNameFor(model => model.StartTime)</p>
+                <p class="col-sm-9" placeholder="e.g. 12:30am" type="datetime">@Html.TextBoxFor(model => model.StartTime)</p>
+            </div>
+            <div class="form-group row">
+                <p class ="col-sm-3">@Html.DisplayNameFor(model => model.EndTime)</p>
+                <p class="col-sm-9" placeholder="e.g. 8:00pm" type="datetime">@Html.TextBoxFor(model => model.EndTime)</p>
+            </div>
+            <div class="form-group row">
+                <p class ="col-sm-3">@Html.DisplayNameFor(model => model.QuarantineRequirements)</p>
+                <p class="col-sm-9">@Html.EditorFor(model => model.QuarantineRequirements)</p>
+            </div>
+            <div class="form-group row">
+                <p class ="col-sm-3">@Html.DisplayNameFor(model => model.MaskRequirements)</p>
+                <p class="col-sm-9">@Html.CheckBoxFor(model => model.MaskRequirements)</p>
+            </div>
+
+            <div class="form-group row">
+                <input type="submit" value="Save" class="btn btn-outline-info" />
+            </div>
+        }
+    </div>
+</div>

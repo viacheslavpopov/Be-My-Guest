@@ -1,0 +1,52 @@
+@{
+    Layout = "_Layout";
+}
+
+@model BeMyGuest.Models.Host
+
+<h2>Host Details</h2>
+<hr />
+
+<div class="card" style="width: 36rem;">
+    <div class="card-body">
+        <h3>@Html.DisplayNameFor(model => model.HostName):</h3>
+        <h4>@Html.DisplayFor(model => model.HostName)</h4>
+        <h3>@Html.DisplayNameFor(model => model.HostEmail):</h3>
+        <h4>@Html.DisplayFor(model => model.HostEmail)</h4>
+    </div>
+</div>
+
+@* @if(@Model.Guests.Count == 0)
+{
+    <p>This event does not have any guests yet.</p>
+    <hr />
+}
+else
+{
+    <h3>Guest List:</h3>
+    <ul>
+        @foreach(var join in Model.Guests)
+        {
+            <div class="form-group">
+                <li><h4>@join.Guest.GuestName</h4></li>
+            </div>
+            @using (Html.BeginForm("DeleteJoin", "Guests"))
+            {
+                <div class="form-group">
+                    @Html.Hidden("joinId", @join.GatheringId)
+                    <input type="submit" value="Remove Guest" class="btn btn-default"/>
+                </div>
+            }
+        }
+    </ul>
+} *@
+
+
+@if (User.Identity.IsAuthenticated && ViewBag.IsCurrentUser)
+{
+    <h3>@Html.ActionLink("Host Home", "Index") || @Html.ActionLink("Edit Host", "Edit", new { id = Model.HostId }) || @Html.ActionLink("Delete Host", "Delete", new { id = Model.HostId }) || @Html.ActionLink("Create an Event", "AddEvent", new { id = Model.HostId})</h3>
+}
+else
+{
+    <h3>@Html.ActionLink("Host Home", "Index")</h3>
+}
