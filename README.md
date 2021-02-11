@@ -81,6 +81,19 @@ To view a mobile demo of the app, please download the Fluid UI app for [iOS](htt
 
 Alternatively, visit this [page](https://www.fluidui.com/editor/live/project/p_Qqp3m3svolrxqJN31QZEBSdIZMTETEbZ) to view the live prototype.
 
+## User stories:
+
+- As a Host I want to be able to create a gathering.
+- As a Host I want to be able to invite Guests to this gathering.
+- As a Host I want to be able to create a questionnaire for the Guests.  ??
+- As a Host I want to be able to have access to Guest contact information for incidental covid tracing, as per state regulations requirements, to be able to send one email to all guests in attendance. (MVC feature)
+- As a Guest I want to be able to RSVP to the invitation.
+- As a Guest I want to be able to fill out the questionnaire.
+- As a Guest I want to make suggestions for the gathering/how to be approached with my given social awkwardness.  ??
+- As an Admin I want to be able to gather data from the gatherings/ questionnaires?
+- As a Host, I want an immediate email/app notification if someone gets covid post-event. 
+
+
 ## **Schema**
 
 <div align="center">
