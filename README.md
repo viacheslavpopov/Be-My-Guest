@@ -8,50 +8,6 @@
 
 ![Be-My-Guest-Opt1-3.png](https://i.postimg.cc/ydMmPLrY/Be-My-Guest-Opt1-3.png)
 
-</div>
-
-<div align="center">
-<img src="https://github.com/agatakolohe.png" width="200px" height="auto">
-<img src="https://github.com/besscampbell.png" width="200px" height="auto">
-<img src="https://github.com/cschweig2.png" width="200px" height="auto">
-<img src="https://github.com/dani-t-codes.png" width="200px" height="auto">
-</div>
-
-## **Authors and Contributors**
-
-<table>
-  <tr>
-    <th>Author</th>
-    <th>GitHub Profile</th>
-    <th>Contact Email</th>
-    <th>LinkedIn Connections</th>
-  </tr>
-  <tr>
-    <td>Agata Kolodziej</td>
-    <td>https://github.com/agatakolohe</td>
-    <td>agatakolohe@gmail.com</td>
-    <td>https://www.linkedin.com/in/agatakolohe/</td>
-  </tr>
-  <tr>
-    <td>Bess Campbell</td>
-    <td>https://github.com/besscampbell</td>
-    <td>bess.k.campbell@gmail.com</td>
-    <td>https://www.linkedin.com/in/bess-campbell
-  </tr>
-  <tr>
-    <td>Chelsea Becker</td>
-    <td>https://github.com/cschweig2</td>
-    <td>chelraebecker@gmail.com</td>
-    <td>https://www.linkedin.com/in/chelsearaebecker/</td>
-  </tr>
-  <tr>
-    <td>Danielle Thompson</td>
-    <td>https://github.com/dani-t-codes</td>
-    <td>danithompson74@gmail.com</td>
-    <td>https://linkedin.com/in/daniellethompson74</td>
-  </tr>
-</table>
-
 ## **Description**
 
 Be my Guest is an application designed to make socially awkward situtions, less awkward by providing a platform to clearly communicate expectations and individual needs at social gatherings ahead of time. The concept was born out of the covid era's unique set of circumstances around social interactions and gatherings, but our team quickly realized how helpful the application could be beyond covid, too. Information like dietary restrictions/allergies, proper pronouns, correct or preferred names (especially for those of who might not forget your face but will definitely be stressed about remembering your name), being immune-compromised or high-exposure-level person could be shared within your event link for guests and host(s) alike to have pertinent information about guests at the ready. Take the stress and awkwardness out of coordinating events and communicating expectations!
@@ -261,4 +217,3 @@ JQuery<br>
 ### License
 
 This software is licensed under the [MIT License](https://choosealicense.com/licenses/mit/).
-Copyright (c) 2021 _*Agata Kolodziej, Bess Campbell, Chelsea Becker, Danielle Thompson*_
